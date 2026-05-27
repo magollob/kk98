@@ -383,21 +383,21 @@ export default function LandingPage() {
       {/* Announcement Bar - Barra de mensagens em carrossel */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden">
         <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
-          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-6 md:gap-12 text-xs md:text-sm font-medium text-black px-4">
             <span>Ate 6x sem juros</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
             <span>Frete gratis para todo o RJ</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
             <span>Promocao Dia dos Namorados</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
           </span>
-          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-6 md:gap-12 text-xs md:text-sm font-medium text-black px-4">
             <span>Ate 6x sem juros</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
             <span>Frete gratis para todo o RJ</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
             <span>Promocao Dia dos Namorados</span>
-            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span className="text-black/70">✦</span>
           </span>
         </div>
       </div>
@@ -1009,7 +1009,7 @@ export default function LandingPage() {
       <section id="home" className="relative z-10 w-full pt-[76px] md:pt-[84px]">
         {/* Banner Mobile */}
         <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-4LQVaVyNx4vJQA6VQnW2EL105jG1Gv.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-xsilCHcNgVxTvE3y0ByntpaLUztQoT.webp"
           alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
           width={800}
           height={1280}
