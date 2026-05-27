@@ -405,29 +405,71 @@ export default function LandingPage() {
       {/* Header Fixo Liquid Glass */}
       <header className="fixed top-[28px] md:top-[32px] left-0 right-0 z-[55] liquid-glass-header">
         <div className="flex items-center justify-between px-4 py-3 md:py-4 max-w-7xl mx-auto">
-          {/* Menu Hamburguer */}
-          <button
-            onClick={openMobileMenu}
-            className="p-2 -ml-2 text-white hover:text-orange-400 transition-colors"
-            aria-label="Abrir menu"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-
-          {/* Logo Centralizada */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
+          {/* Mobile: Menu Hamburguer | Desktop: Logo */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={openMobileMenu}
+              className="md:hidden p-2 -ml-2 text-white hover:text-orange-400 transition-colors"
+              aria-label="Abrir menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+            
+            {/* Logo - Desktop: visivel aqui, Mobile: centralizada */}
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
               alt="Smart Ilha Logo"
-              width={120}
-              height={40}
-              className="h-8 md:h-10 w-auto"
+              width={160}
+              height={53}
+              className="hidden md:block h-12 w-auto"
             />
           </div>
 
-          {/* Espacador para manter a logo centralizada */}
-          <div className="w-10"></div>
+          {/* Logo Mobile Centralizada */}
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+              alt="Smart Ilha Logo"
+              width={140}
+              height={47}
+              className="h-10 w-auto"
+            />
+          </div>
+
+          {/* Desktop: Menu de Navegacao Aberto */}
+          <nav className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollToSection('home')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Inicio
+            </button>
+            <button
+              onClick={() => scrollToSection('smartwatch')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Smartwatch
+            </button>
+            <button
+              onClick={() => scrollToSection('valores')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Valores
+            </button>
+            <button
+              onClick={() => scrollToSection('avaliacoes')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Avaliacoes
+            </button>
+          </nav>
+
+          {/* Espacador Mobile */}
+          <div className="w-10 md:hidden"></div>
         </div>
+        
+        {/* Linha separadora Liquid Glass */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
       </header>
 
       {/* Menu Mobile Overlay */}
@@ -967,7 +1009,7 @@ export default function LandingPage() {
       <section id="home" className="relative z-10 w-full pt-[76px] md:pt-[84px]">
         {/* Banner Mobile */}
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobiledisdosnamorados-CtKczLbo3ZB0gUY9EUgM57Wt8rB33d.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-4LQVaVyNx4vJQA6VQnW2EL105jG1Gv.webp"
           alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
           width={800}
           height={1280}
@@ -1354,7 +1396,7 @@ export default function LandingPage() {
         </div>
 
         {/* Seção de Reviews dos Clientes */}
-        <div className="w-full max-w-md md:max-w-xl lg:max-w-2xl mb-8 md:mb-12">
+        <div id="avaliacoes" className="w-full max-w-md md:max-w-xl lg:max-w-2xl mb-8 md:mb-12 scroll-mt-28">
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3 tracking-tight">
               Veja o que nossos <span className="text-orange-400">clientes</span> estão dizendo
