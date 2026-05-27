@@ -8,7 +8,7 @@ const brindes = [
   { icon: "bluetooth", text: "+Fone Bluetooth" },
   { icon: Sparkles, text: "+Kit Película e Limpeza" },
   { icon: Shield, text: "+Capinha Protetora" },
-  { icon: Percent, text: "+30% De Desconto" },
+  { icon: Percent, text: "+25% De Desconto" },
 ]
 
 const BluetoothIcon = () => (
