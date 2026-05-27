@@ -365,7 +365,7 @@ export default function LandingPage() {
         </button>
       )}
 
-      <div className="fixed bottom-4 left-4 z-50 bg-gray-900/80 backdrop-blur-md border border-orange-500/30 rounded-xl px-4 py-2 shadow-lg">
+      <div className="fixed bottom-4 left-4 z-50 liquid-glass-header rounded-xl px-4 py-2 shadow-lg">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
           <span className="text-gray-300 text-xs md:text-sm">
@@ -401,7 +401,7 @@ export default function LandingPage() {
           )}
 
           {/* Popup Content */}
-          <div className={`relative bg-gradient-to-b from-gray-900 via-black to-gray-900 border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass-enhanced border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
             <div className="relative bg-gradient-to-b from-rose-900/30 to-transparent p-4 text-center">
               <div className="flex justify-center items-center gap-2 mb-1">
@@ -497,9 +497,9 @@ export default function LandingPage() {
           />
 
           {/* Popup Content - Fullscreen mobile, centered desktop */}
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header Fixo */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <Ruler className="w-5 h-5 text-orange-400" />
                 <h2 className="text-white text-lg font-bold">Guia de Medidas</h2>
@@ -591,9 +591,9 @@ export default function LandingPage() {
           />
 
           {/* Popup Content */}
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
@@ -721,9 +721,9 @@ export default function LandingPage() {
             className="absolute inset-0 bg-black/85 backdrop-blur-sm"
             onClick={closeFunctionsPopup}
           />
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <Watch className="w-5 h-5 text-orange-400" />
                 <h2 className="text-white text-lg font-bold">Funções do Smartwatch</h2>
@@ -855,7 +855,7 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Series 11 Ultra */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp"
@@ -892,7 +892,7 @@ export default function LandingPage() {
             </div>
 
             {/* Series 11 Pro */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp"
@@ -929,7 +929,7 @@ export default function LandingPage() {
             </div>
 
             {/* S11 Pro Mini */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp"
@@ -988,7 +988,7 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Card Series 11 Ultra */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Series%2011%20Ultra-fPD0FiQfr6tAkIqMDca3hLjXDVBnWV.webp"
@@ -1027,7 +1027,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card Series 11 Pro */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Series%2011%20Pro-adNwSBlnpR7U6KHVPS3j8fRCejemK9.webp"
@@ -1066,7 +1066,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card S11 Pro Mini */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S11%20Mini-NMjKBnjxFqNDSH8BkDkSsgxfDlNFga.webp"
@@ -1277,7 +1277,7 @@ export default function LandingPage() {
           {/* Cards de benefícios */}
           <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
               {/* 1-2 Dias Úteis */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-calendar-3d-mgsdK904uaUbddYUX6TvFtIRyQU4UK.webp"
@@ -1295,7 +1295,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia de Entrega */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-shield-3d-i1bFzAqrV4erfJuQU5sLLBUGXtCvvt.webp"
@@ -1313,7 +1313,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia Contra Extravio */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-lock-3d-AJ6u6Xd9m8LHQHU0mkPpd3CdV0Yhz0.jpg"
@@ -1331,7 +1331,7 @@ export default function LandingPage() {
             </div>
 
               {/* Código de Rastreio */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-tracking-3d-7M7oOya59OWTbkxO4QLqzwKXlEB2od.webp"
@@ -1350,7 +1350,7 @@ export default function LandingPage() {
           </div>
 
           {/* Timeline do processo */}
-          <div className="bg-gray-900/80 border border-gray-700/50 rounded-xl p-5 md:p-6 mb-6 md:mb-8">
+          <div className="liquid-glass rounded-xl p-5 md:p-6 mb-6 md:mb-8">
             <div className="flex items-center justify-between relative">
               {/* Linha conectora */}
               <div className="absolute top-8 left-[10%] right-[10%] h-0.5 bg-orange-500/50"></div>

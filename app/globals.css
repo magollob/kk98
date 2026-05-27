@@ -305,3 +305,86 @@ img {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ===== LIQUID GLASS SYSTEM (Otimizado) ===== */
+
+/* Base glass - vidro escuro semi-transparente com blur moderado */
+.liquid-glass {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Glass enhanced - versão mais intensa, usar somente em 1 destaque principal */
+.liquid-glass-enhanced {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid rgba(255, 122, 0, 0.15);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 122, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Header glass - para navbar/header fixo */
+.liquid-glass-header {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass border - card com borda fina e efeito glass */
+.glass-border {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Glass border enhanced - card premium, usar em no máximo 1 */
+.glass-border-enhanced {
+  background: rgba(15, 15, 15, 0.75);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(255, 122, 0, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 122, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Glass border subtle - versão mais leve para cards comuns */
+.glass-border-subtle {
+  background: rgba(25, 25, 25, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover sutil para glass elements */
+.glass-border:hover,
+.glass-border-subtle:hover {
+  border-color: rgba(255, 122, 0, 0.25);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 122, 0, 0.1);
+}
+
+.glass-border-enhanced:hover {
+  border-color: rgba(255, 122, 0, 0.35);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 122, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
