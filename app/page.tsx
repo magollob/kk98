@@ -844,8 +844,9 @@ export default function LandingPage() {
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3 tracking-tight uppercase">
-              Conheça Nossos <span className="text-orange-400">Modelos</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance mb-2 md:mb-3">
+              CONHEÇA NOSSOS{" "}
+              <span className="text-orange-400">MODELOS</span>
             </h2>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
               Encontre o smartwatch perfeito para o seu estilo e pulso
@@ -1237,7 +1238,7 @@ export default function LandingPage() {
               className="w-full h-auto rounded-xl md:rounded-2xl border border-gray-700/50 shadow-2xl shadow-black/50"
             />
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/review3-QfwQ7NTV4PCS1SvlkKzI5NdBBy9QS4.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/review3-89jXguVcBqjnjEWtp2KS3ZslU0OIlp.webp"
               alt="Mais avaliações de clientes satisfeitos - Fernanda, Brenda, Léo Durães, Gui, Pedro Ivo e Johnny Rodrigues"
               width={600}
               height={1400}
