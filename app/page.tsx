@@ -67,6 +67,7 @@ export default function LandingPage() {
   const [isVideoClosing, setIsVideoClosing] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Proteção anti-cópia: bloquear clique direito
@@ -86,6 +87,15 @@ export default function LandingPage() {
       setShowGiftButton(true)
     }, 2000)
     return () => clearTimeout(timer)
+  }, [])
+
+  // Detectar scroll para mudar header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const openPromoPopup = useCallback(() => {
@@ -380,31 +390,25 @@ export default function LandingPage() {
       {/* Canvas Background - Fixo na tela */}
       <canvas ref={canvasRef} className="fixed inset-0 z-0" />
 
-      {/* Announcement Bar - Barra de mensagens em carrossel */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden">
+      {/* Announcement Bar - Barra de mensagens em carrossel (some ao rolar) */}
+      <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
-          <span className="inline-flex items-center gap-6 md:gap-12 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Ate 6x sem juros</span>
-            <span className="text-black/70">✦</span>
             <span>Frete gratis para todo o RJ</span>
-            <span className="text-black/70">✦</span>
             <span>Promocao Dia dos Namorados</span>
-            <span className="text-black/70">✦</span>
           </span>
-          <span className="inline-flex items-center gap-6 md:gap-12 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Ate 6x sem juros</span>
-            <span className="text-black/70">✦</span>
             <span>Frete gratis para todo o RJ</span>
-            <span className="text-black/70">✦</span>
             <span>Promocao Dia dos Namorados</span>
-            <span className="text-black/70">✦</span>
           </span>
         </div>
       </div>
 
       {/* Header Fixo Liquid Glass */}
-      <header className="fixed top-[28px] md:top-[32px] left-0 right-0 z-[55] liquid-glass-header">
-        <div className="flex items-center justify-between px-4 py-3 md:py-4 max-w-7xl mx-auto">
+      <header className={`fixed left-0 right-0 z-[55] liquid-glass-header transition-all duration-300 ${isScrolled ? 'top-0' : 'top-[28px] md:top-[32px]'}`}>
+        <div className={`flex items-center justify-between px-4 max-w-7xl mx-auto transition-all duration-300 ${isScrolled ? 'py-2 md:py-3' : 'py-4 md:py-5'}`}>
           {/* Mobile: Menu Hamburguer | Desktop: Logo */}
           <div className="flex items-center gap-4">
             <button
@@ -430,9 +434,9 @@ export default function LandingPage() {
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
               alt="Smart Ilha Logo"
-              width={140}
-              height={47}
-              className="h-10 w-auto"
+              width={160}
+              height={53}
+              className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
             />
           </div>
 
@@ -1006,7 +1010,7 @@ export default function LandingPage() {
       )}
 
       {/* Banner Principal */}
-      <section id="home" className="relative z-10 w-full pt-[76px] md:pt-[84px]">
+      <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
         {/* Banner Mobile */}
         <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-xsilCHcNgVxTvE3y0ByntpaLUztQoT.webp"
