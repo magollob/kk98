@@ -14,7 +14,7 @@ declare global {
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Button } from "@/components/ui/button"
-import { X, Gift, Watch, Headphones, Shield, Truck, Sparkles, MapPin, Ruler, Play } from "lucide-react"
+import { X, Gift, Watch, Headphones, Shield, Truck, Sparkles, MapPin, Ruler, Play, Menu } from "lucide-react"
 import Image from "next/image"
 import {
   Accordion,
@@ -65,6 +65,8 @@ export default function LandingPage() {
   const [isFunctionsClosing, setIsFunctionsClosing] = useState(false)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [isVideoClosing, setIsVideoClosing] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Proteção anti-cópia: bloquear clique direito
@@ -164,6 +166,30 @@ export default function LandingPage() {
   const ctaFade = useFadeIn()
   const review2Ref = useRef<HTMLImageElement>(null)
   const hasOpenedPopupRef = useRef(false)
+
+  // Funções do menu mobile
+  const openMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(true)
+    setIsMobileMenuClosing(false)
+  }, [])
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuClosing(true)
+    setTimeout(() => {
+      setIsMobileMenuOpen(false)
+      setIsMobileMenuClosing(false)
+    }, 250)
+  }, [])
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    closeMobileMenu()
+    setTimeout(() => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 300)
+  }, [closeMobileMenu])
 
   // Detectar quando review2 fica visível para abrir o popup
   useEffect(() => {
@@ -353,6 +379,125 @@ export default function LandingPage() {
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Canvas Background - Fixo na tela */}
       <canvas ref={canvasRef} className="fixed inset-0 z-0" />
+
+      {/* Announcement Bar - Barra de mensagens em carrossel */}
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden">
+        <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+            <span>Ate 6x sem juros</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span>Frete gratis para todo o RJ</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span>Promocao Dia dos Namorados</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+          </span>
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+            <span>Ate 6x sem juros</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span>Frete gratis para todo o RJ</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+            <span>Promocao Dia dos Namorados</span>
+            <span className="w-1 h-1 bg-black/50 rounded-full"></span>
+          </span>
+        </div>
+      </div>
+
+      {/* Header Fixo Liquid Glass */}
+      <header className="fixed top-[28px] md:top-[32px] left-0 right-0 z-[55] liquid-glass-header">
+        <div className="flex items-center justify-between px-4 py-3 md:py-4 max-w-7xl mx-auto">
+          {/* Menu Hamburguer */}
+          <button
+            onClick={openMobileMenu}
+            className="p-2 -ml-2 text-white hover:text-orange-400 transition-colors"
+            aria-label="Abrir menu"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+
+          {/* Logo Centralizada */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+              alt="Smart Ilha Logo"
+              width={120}
+              height={40}
+              className="h-8 md:h-10 w-auto"
+            />
+          </div>
+
+          {/* Espacador para manter a logo centralizada */}
+          <div className="w-10"></div>
+        </div>
+      </header>
+
+      {/* Menu Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[70]">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Menu Panel */}
+          <div className={`absolute top-0 left-0 h-full w-72 max-w-[80vw] liquid-glass flex flex-col ${isMobileMenuClosing ? 'menu-closing' : 'menu-open'}`}>
+            {/* Menu Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+                alt="Smart Ilha Logo"
+                width={100}
+                height={33}
+                className="h-7 w-auto"
+              />
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 -mr-2 text-white hover:text-orange-400 transition-colors"
+                aria-label="Fechar menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Menu Links */}
+            <nav className="flex-1 px-5 py-6">
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection('home')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Inicio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('smartwatch')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Smartwatch
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('valores')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Valores
+                  </button>
+                </li>
+              </ul>
+            </nav>
+
+            {/* Menu Footer */}
+            <div className="px-5 py-4 border-t border-white/10">
+              <p className="text-gray-400 text-xs text-center">
+                Smart Ilha - Ilha do Governador, RJ
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Botão flutuante de presente */}
       {showGiftButton && (
@@ -819,7 +964,7 @@ export default function LandingPage() {
       )}
 
       {/* Banner Principal */}
-      <section className="relative z-10 w-full">
+      <section id="home" className="relative z-10 w-full pt-[76px] md:pt-[84px]">
         {/* Banner Mobile */}
         <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobiledisdosnamorados-CtKczLbo3ZB0gUY9EUgM57Wt8rB33d.webp"
@@ -840,7 +985,7 @@ export default function LandingPage() {
         />
       </section>
 
-      <section className="relative z-10 flex flex-col items-center justify-start px-4 pt-8 pb-8 md:pt-12 md:pb-12">
+      <section id="smartwatch" className="relative z-10 flex flex-col items-center justify-start px-4 pt-8 pb-8 md:pt-12 md:pb-12">
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
@@ -978,7 +1123,7 @@ export default function LandingPage() {
           </div>
 
           {/* Seção Confira os Valores */}
-          <div className="mt-10 md:mt-14">
+          <div id="valores" className="mt-10 md:mt-14 scroll-mt-24">
             <div className="text-center mb-6 md:mb-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance">
                 CONFIRA OS{" "}

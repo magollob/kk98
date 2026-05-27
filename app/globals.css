@@ -388,3 +388,53 @@ img {
     0 0 0 1px rgba(255, 122, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
+
+/* ===== ANNOUNCEMENT BAR CAROUSEL ===== */
+@keyframes announcement-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.announcement-carousel {
+  display: flex;
+  animation: announcement-scroll 20s linear infinite;
+}
+
+.announcement-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* ===== MOBILE MENU ANIMATION ===== */
+@keyframes menu-slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes menu-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.menu-open {
+  animation: menu-slide-in 0.3s ease-out forwards;
+}
+
+.menu-closing {
+  animation: menu-slide-out 0.25s ease-in forwards;
+}
