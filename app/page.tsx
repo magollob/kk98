@@ -394,14 +394,14 @@ export default function LandingPage() {
       <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
-            <span>Ate 6x sem juros</span>
-            <span>Frete gratis para todo o RJ</span>
-            <span>Promocao Dia dos Namorados</span>
+            <span>Até 6x sem juros</span>
+            <span>Frete gráis para todo o RJ</span>
+            <span>Promoção Dia dos Namorados</span>
           </span>
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
-            <span>Ate 6x sem juros</span>
+            <span>Até 6x sem juros</span>
             <span>Frete gratis para todo o RJ</span>
-            <span>Promocao Dia dos Namorados</span>
+            <span>Promoção Dia dos Namorados</span>
           </span>
         </div>
       </div>
