@@ -14,7 +14,7 @@ declare global {
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Button } from "@/components/ui/button"
-import { X, Gift, Watch, Headphones, Shield, Truck, Sparkles, MapPin, Ruler, Play } from "lucide-react"
+import { X, Gift, Watch, Headphones, Shield, Truck, Sparkles, MapPin, Ruler, Play, Menu } from "lucide-react"
 import Image from "next/image"
 import {
   Accordion,
@@ -65,6 +65,9 @@ export default function LandingPage() {
   const [isFunctionsClosing, setIsFunctionsClosing] = useState(false)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [isVideoClosing, setIsVideoClosing] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Proteção anti-cópia: bloquear clique direito
@@ -84,6 +87,15 @@ export default function LandingPage() {
       setShowGiftButton(true)
     }, 2000)
     return () => clearTimeout(timer)
+  }, [])
+
+  // Detectar scroll para mudar header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const openPromoPopup = useCallback(() => {
@@ -164,6 +176,30 @@ export default function LandingPage() {
   const ctaFade = useFadeIn()
   const review2Ref = useRef<HTMLImageElement>(null)
   const hasOpenedPopupRef = useRef(false)
+
+  // Funções do menu mobile
+  const openMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(true)
+    setIsMobileMenuClosing(false)
+  }, [])
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuClosing(true)
+    setTimeout(() => {
+      setIsMobileMenuOpen(false)
+      setIsMobileMenuClosing(false)
+    }, 250)
+  }, [])
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    closeMobileMenu()
+    setTimeout(() => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 300)
+  }, [closeMobileMenu])
 
   // Detectar quando review2 fica visível para abrir o popup
   useEffect(() => {
@@ -354,6 +390,161 @@ export default function LandingPage() {
       {/* Canvas Background - Fixo na tela */}
       <canvas ref={canvasRef} className="fixed inset-0 z-0" />
 
+      {/* Announcement Bar - Barra de mensagens em carrossel (some ao rolar) */}
+      <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+        <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+            <span>Até 6x sem juros</span>
+            <span>Frete grátis para todo o RJ</span>
+            <span>Promoção Dia dos Namorados</span>
+          </span>
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+            <span>Até 6x sem juros</span>
+            <span>Frete grátis para todo o RJ</span>
+            <span>Promoção Dia dos Namorados</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Header Fixo Liquid Glass */}
+      <header className={`fixed left-0 right-0 z-[55] liquid-glass-header transition-all duration-300 ${isScrolled ? 'top-0' : 'top-[28px] md:top-[32px]'}`}>
+        <div className={`flex items-center justify-between px-4 max-w-7xl mx-auto transition-all duration-300 ${isScrolled ? 'py-2 md:py-3' : 'py-4 md:py-5'}`}>
+          {/* Mobile: Menu Hamburguer | Desktop: Logo */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={openMobileMenu}
+              className="md:hidden p-2 -ml-2 text-white hover:text-orange-400 transition-colors"
+              aria-label="Abrir menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+            
+            {/* Logo - Desktop: visivel aqui, Mobile: centralizada */}
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+              alt="Smart Ilha Logo"
+              width={160}
+              height={53}
+              className="hidden md:block h-12 w-auto"
+            />
+          </div>
+
+          {/* Logo Mobile Centralizada */}
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+              alt="Smart Ilha Logo"
+              width={160}
+              height={53}
+              className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
+            />
+          </div>
+
+          {/* Desktop: Menu de Navegacao Aberto */}
+          <nav className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollToSection('home')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Inicio
+            </button>
+            <button
+              onClick={() => scrollToSection('smartwatch')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Smartwatch
+            </button>
+            <button
+              onClick={() => scrollToSection('valores')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Valores
+            </button>
+            <button
+              onClick={() => scrollToSection('avaliacoes')}
+              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+            >
+              Avaliacoes
+            </button>
+          </nav>
+
+          {/* Espacador Mobile */}
+          <div className="w-10 md:hidden"></div>
+        </div>
+        
+        {/* Linha separadora Liquid Glass */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+      </header>
+
+      {/* Menu Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[70]">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Menu Panel */}
+          <div className={`absolute top-0 left-0 h-full w-72 max-w-[80vw] liquid-glass flex flex-col ${isMobileMenuClosing ? 'menu-closing' : 'menu-open'}`}>
+            {/* Menu Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+                alt="Smart Ilha Logo"
+                width={100}
+                height={33}
+                className="h-7 w-auto"
+              />
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 -mr-2 text-white hover:text-orange-400 transition-colors"
+                aria-label="Fechar menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Menu Links */}
+            <nav className="flex-1 px-5 py-6">
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection('home')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Inicio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('smartwatch')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Smartwatch
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection('valores')}
+                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Valores
+                  </button>
+                </li>
+              </ul>
+            </nav>
+
+            {/* Menu Footer */}
+            <div className="px-5 py-4 border-t border-white/10">
+              <p className="text-gray-400 text-xs text-center">
+                Smart Ilha - Ilha do Governador, RJ
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Botão flutuante de presente */}
       {showGiftButton && (
         <button
@@ -365,7 +556,7 @@ export default function LandingPage() {
         </button>
       )}
 
-      <div className="fixed bottom-4 left-4 z-50 bg-gray-900/80 backdrop-blur-md border border-orange-500/30 rounded-xl px-4 py-2 shadow-lg">
+      <div className="fixed bottom-4 left-4 z-50 liquid-glass-header rounded-xl px-4 py-2 shadow-lg">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
           <span className="text-gray-300 text-xs md:text-sm">
@@ -401,7 +592,7 @@ export default function LandingPage() {
           )}
 
           {/* Popup Content */}
-          <div className={`relative bg-gradient-to-b from-gray-900 via-black to-gray-900 border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass-enhanced border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
             <div className="relative bg-gradient-to-b from-rose-900/30 to-transparent p-4 text-center">
               <div className="flex justify-center items-center gap-2 mb-1">
@@ -497,9 +688,9 @@ export default function LandingPage() {
           />
 
           {/* Popup Content - Fullscreen mobile, centered desktop */}
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header Fixo */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <Ruler className="w-5 h-5 text-orange-400" />
                 <h2 className="text-white text-lg font-bold">Guia de Medidas</h2>
@@ -591,9 +782,9 @@ export default function LandingPage() {
           />
 
           {/* Popup Content */}
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
@@ -721,9 +912,9 @@ export default function LandingPage() {
             className="absolute inset-0 bg-black/85 backdrop-blur-sm"
             onClick={closeFunctionsPopup}
           />
-          <div className={`relative bg-gradient-to-b from-gray-900 to-gray-950 w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-gray-800 to-gray-900 px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <Watch className="w-5 h-5 text-orange-400" />
                 <h2 className="text-white text-lg font-bold">Funções do Smartwatch</h2>
@@ -819,10 +1010,10 @@ export default function LandingPage() {
       )}
 
       {/* Banner Principal */}
-      <section className="relative z-10 w-full">
+      <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
         {/* Banner Mobile */}
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobiledisdosnamorados-CtKczLbo3ZB0gUY9EUgM57Wt8rB33d.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-xsilCHcNgVxTvE3y0ByntpaLUztQoT.webp"
           alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
           width={800}
           height={1280}
@@ -840,12 +1031,13 @@ export default function LandingPage() {
         />
       </section>
 
-      <section className="relative z-10 flex flex-col items-center justify-start px-4 pt-8 pb-8 md:pt-12 md:pb-12">
+      <section id="smartwatch" className="relative z-10 flex flex-col items-center justify-start px-4 pt-8 pb-8 md:pt-12 md:pb-12">
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3 tracking-tight uppercase">
-              Conheça Nossos <span className="text-orange-400">Modelos</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance mb-2 md:mb-3">
+              CONHEÇA NOSSOS{" "}
+              <span className="text-orange-400">MODELOS</span>
             </h2>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
               Encontre o smartwatch perfeito para o seu estilo e pulso
@@ -854,7 +1046,7 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Series 11 Ultra */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp"
@@ -891,7 +1083,7 @@ export default function LandingPage() {
             </div>
 
             {/* Series 11 Pro */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp"
@@ -928,7 +1120,7 @@ export default function LandingPage() {
             </div>
 
             {/* S11 Pro Mini */}
-            <div className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
+            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
               <div className="relative aspect-[5/6] overflow-hidden">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp"
@@ -977,7 +1169,7 @@ export default function LandingPage() {
           </div>
 
           {/* Seção Confira os Valores */}
-          <div className="mt-10 md:mt-14">
+          <div id="valores" className="mt-10 md:mt-14 scroll-mt-24">
             <div className="text-center mb-6 md:mb-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance">
                 CONFIRA OS{" "}
@@ -987,7 +1179,7 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Card Series 11 Ultra */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Series%2011%20Ultra-fPD0FiQfr6tAkIqMDca3hLjXDVBnWV.webp"
@@ -1026,7 +1218,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card Series 11 Pro */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Series%2011%20Pro-adNwSBlnpR7U6KHVPS3j8fRCejemK9.webp"
@@ -1065,7 +1257,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card S11 Pro Mini */}
-              <div className="bg-gray-900/80 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+              <div className="glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S11%20Mini-NMjKBnjxFqNDSH8BkDkSsgxfDlNFga.webp"
@@ -1208,7 +1400,7 @@ export default function LandingPage() {
         </div>
 
         {/* Seção de Reviews dos Clientes */}
-        <div className="w-full max-w-md md:max-w-xl lg:max-w-2xl mb-8 md:mb-12">
+        <div id="avaliacoes" className="w-full max-w-md md:max-w-xl lg:max-w-2xl mb-8 md:mb-12 scroll-mt-28">
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3 tracking-tight">
               Veja o que nossos <span className="text-orange-400">clientes</span> estão dizendo
@@ -1237,7 +1429,7 @@ export default function LandingPage() {
               className="w-full h-auto rounded-xl md:rounded-2xl border border-gray-700/50 shadow-2xl shadow-black/50"
             />
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/review3-QfwQ7NTV4PCS1SvlkKzI5NdBBy9QS4.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/review3-89jXguVcBqjnjEWtp2KS3ZslU0OIlp.webp"
               alt="Mais avaliações de clientes satisfeitos - Fernanda, Brenda, Léo Durães, Gui, Pedro Ivo e Johnny Rodrigues"
               width={600}
               height={1400}
@@ -1276,7 +1468,7 @@ export default function LandingPage() {
           {/* Cards de benefícios */}
           <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
               {/* 1-2 Dias Úteis */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-calendar-3d-mgsdK904uaUbddYUX6TvFtIRyQU4UK.webp"
@@ -1294,7 +1486,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia de Entrega */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-shield-3d-i1bFzAqrV4erfJuQU5sLLBUGXtCvvt.webp"
@@ -1312,7 +1504,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia Contra Extravio */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-lock-3d-AJ6u6Xd9m8LHQHU0mkPpd3CdV0Yhz0.jpg"
@@ -1330,7 +1522,7 @@ export default function LandingPage() {
             </div>
 
               {/* Código de Rastreio */}
-              <div className="flex items-center gap-4 bg-gray-900/80 border border-gray-700/50 rounded-xl p-4">
+              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-tracking-3d-7M7oOya59OWTbkxO4QLqzwKXlEB2od.webp"
@@ -1349,7 +1541,7 @@ export default function LandingPage() {
           </div>
 
           {/* Timeline do processo */}
-          <div className="bg-gray-900/80 border border-gray-700/50 rounded-xl p-5 md:p-6 mb-6 md:mb-8">
+          <div className="liquid-glass rounded-xl p-5 md:p-6 mb-6 md:mb-8">
             <div className="flex items-center justify-between relative">
               {/* Linha conectora */}
               <div className="absolute top-8 left-[10%] right-[10%] h-0.5 bg-orange-500/50"></div>
