@@ -1021,8 +1021,8 @@ export default function LandingPage() {
         />
         {/* Banner Desktop */}
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktopdiadosnamorados-OVjA118zCyhBz5Y00wXgZ8mpdoO6NK.webp"
-          alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktop-AcuNF1CKi7kIYJepbuarJJa2K3ywLp.webp"
+          alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
           width={1920}
           height={768}
           className="hidden md:block w-full h-auto"
