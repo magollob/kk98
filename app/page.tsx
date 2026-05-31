@@ -1311,7 +1311,7 @@ export default function LandingPage() {
           <div className="mt-6 md:mt-8">
             <div className="flex justify-center">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-jf9YrMRNnDXcCSsRydxaSX4G2M3Tmo.webp"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-1TjDyVG5BiIfCpdBDSfzTbLhQBcEVS.webp"
                 alt="Brindes do Dia dos Namorados - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película e limpeza, capinha protetora e 25% de desconto"
                 width={500}
                 height={1200}
