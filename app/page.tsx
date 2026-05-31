@@ -395,12 +395,12 @@ export default function LandingPage() {
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Dia dos Namorados</span>
+            <span>Promoção Show de Brindes</span>
           </span>
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Dia dos Namorados</span>
+            <span>Promoção Show de Brindes</span>
           </span>
         </div>
       </div>
@@ -593,26 +593,24 @@ export default function LandingPage() {
           {/* Popup Content */}
           <div className={`relative liquid-glass-enhanced border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="relative bg-gradient-to-b from-rose-900/30 to-transparent p-4 text-center">
+            <div className="relative bg-gradient-to-b from-orange-900/30 to-transparent p-4 text-center">
               <div className="flex justify-center items-center gap-2 mb-1">
-                <span className="text-xl">💕</span>
-                <h2 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-orange-400 to-rose-500 bg-clip-text text-transparent drop-shadow-lg">
+                <h2 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-lg">
                   PROMOÇÃO
                 </h2>
-                <span className="text-xl">💕</span>
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                DIA DOS NAMORADOS
+                SHOW DE BRINDES
               </h3>
-              <div className="bg-gradient-to-r from-rose-500 to-orange-500 text-white font-bold py-1.5 px-3 rounded-full text-xs md:text-sm inline-block">
+              <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white font-bold py-1.5 px-3 rounded-full text-xs md:text-sm inline-block">
                 ADQUIRA SEU SMARTWATCH E RECEBA 👇
               </div>
             </div>
 
             {/* Desconto */}
             <div className="px-4 py-2">
-              <div className="border-2 border-rose-500/50 rounded-xl p-3 bg-gradient-to-b from-rose-900/20 to-transparent text-center mb-3">
-                <p className="text-rose-400 font-semibold text-xs mb-0.5">DIA DOS NAMORADOS</p>
+              <div className="border-2 border-orange-500/50 rounded-xl p-3 bg-gradient-to-b from-orange-900/20 to-transparent text-center mb-3">
+                <p className="text-orange-400 font-semibold text-xs mb-0.5">SHOW DE BRINDES</p>
                 <div className="flex items-center justify-center gap-3">
                   <div>
                     <p className="text-xs text-gray-300 mb-0.5">1º SMARTWATCH</p>
@@ -621,11 +619,11 @@ export default function LandingPage() {
                     </p>
                     <p className="text-sm font-bold text-white">OFF</p>
                   </div>
-                  <span className="text-2xl text-rose-400 font-bold">+</span>
+                  <span className="text-2xl text-orange-400 font-bold">+</span>
                   <div>
                     <p className="text-xs text-gray-300 mb-0.5">2º SMARTWATCH</p>
-                    <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-rose-400 via-rose-500 to-rose-600 bg-clip-text text-transparent">
-                      20%
+                    <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                      10%
                     </p>
                     <p className="text-sm font-bold text-white">OFF</p>
                   </div>
@@ -1012,8 +1010,8 @@ export default function LandingPage() {
       <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
         {/* Banner Mobile */}
         <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-xsilCHcNgVxTvE3y0ByntpaLUztQoT.webp"
-          alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-32X0vSqm2dzfl98CPlWZJCShJHg1SD.webp"
+          alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
           width={800}
           height={1280}
           className="block md:hidden w-full h-auto"
@@ -1311,8 +1309,8 @@ export default function LandingPage() {
           <div className="mt-6 md:mt-8">
             <div className="flex justify-center">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-1TjDyVG5BiIfCpdBDSfzTbLhQBcEVS.webp"
-                alt="Brindes do Dia dos Namorados - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película e limpeza, capinha protetora e 25% de desconto"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-6JGvWlxzoJ49EfKifxxpFvPIs7jbFx.webp"
+                alt="Brindes do Show de Brindes - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película para smartwatch, capinha protetora e 25% de desconto"
                 width={500}
                 height={1200}
                 className="w-full max-w-md h-auto"
