@@ -22,7 +22,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { BrindesCarousel } from "@/components/brindes-carousel"
 
 // Hook otimizado para fade-in na rolagem
 function useFadeIn() {
@@ -1022,8 +1021,8 @@ export default function LandingPage() {
         />
         {/* Banner Desktop */}
         <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktopdiadosnamorados-OVjA118zCyhBz5Y00wXgZ8mpdoO6NK.webp"
-          alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktop-AcuNF1CKi7kIYJepbuarJJa2K3ywLp.webp"
+          alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
           width={1920}
           height={768}
           className="hidden md:block w-full h-auto"
@@ -1310,56 +1309,14 @@ export default function LandingPage() {
 
           {/* Valores e Condições */}
           <div className="mt-6 md:mt-8">
-            <div className="bg-gradient-to-b from-gray-900/90 to-gray-950/90 border border-gray-800 rounded-2xl p-6 md:p-8 text-center">
-              {/* Imagem do Kit Completo */}
-              <div className="mb-6">
-                <div className="flex justify-center items-center gap-2 mb-4">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-black text-white drop-shadow-lg uppercase tracking-wide">
-                    Confira todos os brindes do{" "}
-                    <span className="text-orange-400">Dia dos Namorados</span>
-                  </h3>
-                </div>
-                <div className="relative w-full max-w-md mx-auto rounded-xl overflow-hidden border-4 border-orange-500/60 shadow-xl shadow-orange-500/30">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes-9O96OIhSqzKijVMMYDntZSmXjCHOG5.webp"
-                    alt="Kit completo com smartwatch, fone bluetooth, pulseiras extras, capinha e acessórios"
-                    width={500}
-                    height={750}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-
-              {/* Brindes */}
-              <div className="mt-8">
-                {/* Subtítulo PRESENTES EXCLUSIVOS */}
-                <div className="flex items-center justify-center gap-2 mb-6">
-                  <svg className="w-5 h-5 text-rose-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
-                  <span className="text-rose-400 font-bold text-sm uppercase tracking-wider">Presentes Exclusivos</span>
-                  <svg className="w-5 h-5 text-rose-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
-                </div>
-
-                {/* Grid de brindes */}
-                <BrindesCarousel />
-
-                {/* Destaque R$105,00 em presentes GRÁTIS HOJE */}
-                <div className="mt-6 flex flex-col items-center">
-                  <div className="bg-gradient-to-r from-rose-500/20 via-rose-400/30 to-rose-500/20 border border-rose-500/50 rounded-xl px-6 py-4 text-center">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <svg className="w-5 h-5 text-rose-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                      </svg>
-                      <span className="text-rose-400 font-black text-lg line-through">R$105,00</span>
-                      <span className="text-white text-sm font-medium">em presentes</span>
-                    </div>
-                    <span className="text-rose-300 font-bold text-2xl uppercase tracking-wide animate-pulse">GRÁTIS</span>
-                  </div>
-                </div>
-              </div>
+            <div className="flex justify-center">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-1TjDyVG5BiIfCpdBDSfzTbLhQBcEVS.webp"
+                alt="Brindes do Dia dos Namorados - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película e limpeza, capinha protetora e 25% de desconto"
+                width={500}
+                height={1200}
+                className="w-full max-w-md h-auto"
+              />
             </div>
           </div>
         </div>
