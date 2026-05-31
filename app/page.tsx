@@ -395,12 +395,12 @@ export default function LandingPage() {
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Dia dos Namorados</span>
+            <span>Promoção Show de Brindes</span>
           </span>
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Dia dos Namorados</span>
+            <span>Promoção Show de Brindes</span>
           </span>
         </div>
       </div>
@@ -602,7 +602,7 @@ export default function LandingPage() {
                 <span className="text-xl">💕</span>
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                DIA DOS NAMORADOS
+                SHOW DE BRINDES
               </h3>
               <div className="bg-gradient-to-r from-rose-500 to-orange-500 text-white font-bold py-1.5 px-3 rounded-full text-xs md:text-sm inline-block">
                 ADQUIRA SEU SMARTWATCH E RECEBA 👇
@@ -612,7 +612,7 @@ export default function LandingPage() {
             {/* Desconto */}
             <div className="px-4 py-2">
               <div className="border-2 border-rose-500/50 rounded-xl p-3 bg-gradient-to-b from-rose-900/20 to-transparent text-center mb-3">
-                <p className="text-rose-400 font-semibold text-xs mb-0.5">DIA DOS NAMORADOS</p>
+                <p className="text-rose-400 font-semibold text-xs mb-0.5">SHOW DE BRINDES</p>
                 <div className="flex items-center justify-center gap-3">
                   <div>
                     <p className="text-xs text-gray-300 mb-0.5">1º SMARTWATCH</p>
@@ -625,7 +625,7 @@ export default function LandingPage() {
                   <div>
                     <p className="text-xs text-gray-300 mb-0.5">2º SMARTWATCH</p>
                     <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-rose-400 via-rose-500 to-rose-600 bg-clip-text text-transparent">
-                      20%
+                      10%
                     </p>
                     <p className="text-sm font-bold text-white">OFF</p>
                   </div>
@@ -1012,8 +1012,8 @@ export default function LandingPage() {
       <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
         {/* Banner Mobile */}
         <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-xsilCHcNgVxTvE3y0ByntpaLUztQoT.webp"
-          alt="Dia dos Namorados Smart Ilha - Tecnologia que conecta corações - 25% OFF no 1º smartwatch + 20% OFF no 2º"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-eR5MFp9KszY9cxPjETTX8IhzNiON4h.webp"
+          alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
           width={800}
           height={1280}
           className="block md:hidden w-full h-auto"
@@ -1311,8 +1311,8 @@ export default function LandingPage() {
           <div className="mt-6 md:mt-8">
             <div className="flex justify-center">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-1TjDyVG5BiIfCpdBDSfzTbLhQBcEVS.webp"
-                alt="Brindes do Dia dos Namorados - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película e limpeza, capinha protetora e 25% de desconto"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-mkSBP6o7u1Omh23g4WefZle0E2e09U.webp"
+                alt="Brindes do Show de Brindes - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película e limpeza, capinha protetora e 25% de desconto"
                 width={500}
                 height={1200}
                 className="w-full max-w-md h-auto"
