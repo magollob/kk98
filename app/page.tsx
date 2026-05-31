@@ -1010,7 +1010,7 @@ export default function LandingPage() {
       <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
         {/* Banner Mobile */}
         <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-SAV4XPZgLmSXgCglmYDLii7v2tk1rI.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-32X0vSqm2dzfl98CPlWZJCShJHg1SD.webp"
           alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
           width={800}
           height={1280}
