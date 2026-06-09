@@ -1032,7 +1032,7 @@ export default function LandingPage() {
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance mb-2 md:mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight whitespace-nowrap mb-2 md:mb-3">
               CONHEÇA NOSSOS{" "}
               <span className="text-orange-400">MODELOS</span>
             </h2>
