@@ -83,12 +83,9 @@ export default function LandingPage() {
       const cyclePos = ((daysSinceAnchor % 6) + 6) % 6
       const daysRemaining = 7 - cyclePos
       const endDate = new Date(startOfToday.getTime() + daysRemaining * msPerDay)
-      endDate.setHours(23, 59, 0, 0)
       const dd = String(endDate.getDate()).padStart(2, "0")
       const mm = String(endDate.getMonth() + 1).padStart(2, "0")
-      const hh = String(endDate.getHours()).padStart(2, "0")
-      const min = String(endDate.getMinutes()).padStart(2, "0")
-      setOfferEndLabel(`${dd}/${mm} ${hh}:${min}`)
+      setOfferEndLabel(`${dd}/${mm}`)
     }
     computeOfferEnd()
     const interval = setInterval(computeOfferEnd, 60 * 1000)
@@ -454,7 +451,7 @@ export default function LandingPage() {
                 className="h-12 w-auto"
               />
               {offerEndLabel && (
-                <span className="text-[10px] leading-none text-gray-400/80 font-light tracking-wide mt-1">
+                <span className="text-[10px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-1">
                   Oferta termina em: {offerEndLabel}
                 </span>
               )}
@@ -471,7 +468,7 @@ export default function LandingPage() {
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
             />
             {offerEndLabel && (
-              <span className="text-[9px] leading-none text-gray-400/80 font-light tracking-wide mt-0.5">
+              <span className="text-[9px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-0.5">
                 Oferta termina em: {offerEndLabel}
               </span>
             )}
