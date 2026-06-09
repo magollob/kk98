@@ -469,7 +469,7 @@ export default function LandingPage() {
             />
             {isScrolled && offerEndLabel && (
               <span className="text-[9px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-0.5">
-                Oferta termina em: {offerEndLabel}
+                Oferta termina dia: {offerEndLabel}
               </span>
             )}
           </div>
