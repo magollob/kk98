@@ -450,7 +450,7 @@ export default function LandingPage() {
                 height={53}
                 className="h-12 w-auto"
               />
-              {offerEndLabel && (
+              {isScrolled && offerEndLabel && (
                 <span className="text-[10px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-1">
                   Oferta termina em: {offerEndLabel}
                 </span>
@@ -467,7 +467,7 @@ export default function LandingPage() {
               height={53}
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
             />
-            {offerEndLabel && (
+            {isScrolled && offerEndLabel && (
               <span className="text-[9px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-0.5">
                 Oferta termina em: {offerEndLabel}
               </span>
