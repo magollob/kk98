@@ -1454,7 +1454,7 @@ export default function LandingPage() {
                 </div>
               <div>
                 <h3 className="text-orange-500 font-bold text-base md:text-lg">GARANTIA DE ENTREGA</h3>
-                <p className="text-gray-400 text-sm">Garantimos que seu pedido sera entregue</p>
+                <p className="text-gray-400 text-sm">Garantimos que seu pedido será entregue</p>
               </div>
             </div>
 
