@@ -67,7 +67,30 @@ export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [offerEndLabel, setOfferEndLabel] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  // Contador da oferta: ciclo de 7 dias que reseta ao chegar no 2º dia
+  useEffect(() => {
+    const computeOfferEnd = () => {
+      const now = new Date()
+      const msPerDay = 1000 * 60 * 60 * 24
+      // Data de referência fixa para ancorar o ciclo de contagem
+      const anchor = new Date(2026, 0, 1)
+      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      const daysSinceAnchor = Math.floor((startOfToday.getTime() - anchor.getTime()) / msPerDay)
+      // Posição no ciclo de 6 dias -> dias restantes oscila entre 7 e 2
+      const cyclePos = ((daysSinceAnchor % 6) + 6) % 6
+      const daysRemaining = 7 - cyclePos
+      const endDate = new Date(startOfToday.getTime() + daysRemaining * msPerDay)
+      const dd = String(endDate.getDate()).padStart(2, "0")
+      const mm = String(endDate.getMonth() + 1).padStart(2, "0")
+      setOfferEndLabel(`${dd}/${mm}`)
+    }
+    computeOfferEnd()
+    const interval = setInterval(computeOfferEnd, 60 * 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Proteção anti-cópia: bloquear clique direito
   useEffect(() => {
@@ -419,17 +442,24 @@ export default function LandingPage() {
             </button>
             
             {/* Logo - Desktop: visivel aqui, Mobile: centralizada */}
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
-              alt="Smart Ilha Logo"
-              width={160}
-              height={53}
-              className="hidden md:block h-12 w-auto"
-            />
+            <div className="hidden md:flex flex-col">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
+                alt="Smart Ilha Logo"
+                width={160}
+                height={53}
+                className="h-12 w-auto"
+              />
+              {isScrolled && offerEndLabel && (
+                <span className="text-[10px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-1">
+                  Oferta termina dia: {offerEndLabel}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Logo Mobile Centralizada */}
-          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
               alt="Smart Ilha Logo"
@@ -437,6 +467,11 @@ export default function LandingPage() {
               height={53}
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
             />
+            {isScrolled && offerEndLabel && (
+              <span className="text-[9px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-0.5">
+                Oferta termina dia: {offerEndLabel}
+              </span>
+            )}
           </div>
 
           {/* Desktop: Menu de Navegacao Aberto */}
@@ -1032,7 +1067,7 @@ export default function LandingPage() {
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance mb-2 md:mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight whitespace-nowrap mb-2 md:mb-3">
               CONHEÇA NOSSOS{" "}
               <span className="text-orange-400">MODELOS</span>
             </h2>
@@ -1454,7 +1489,7 @@ export default function LandingPage() {
                 </div>
               <div>
                 <h3 className="text-orange-500 font-bold text-base md:text-lg">GARANTIA DE ENTREGA</h3>
-                <p className="text-gray-400 text-sm">Garantimos que seu pedido sera entregue</p>
+                <p className="text-gray-400 text-sm">Garantimos que seu pedido será entregue</p>
               </div>
             </div>
 
