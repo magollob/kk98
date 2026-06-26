@@ -23,7 +23,62 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Hero3D } from "@/components/hero-3d"
-import { CardImageSwiper } from "@/components/card-image-swiper"
+import { ModelsCarousel, type ModelItem } from "@/components/models-carousel"
+
+const MODELS: ModelItem[] = [
+  {
+    images: [
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp",
+        alt: "Smartwatch Series 11 Ultra 49mm",
+      },
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11ultra-DN8ZLXo3Eu3P75BtOxTjtnqpRghixB.webp",
+        alt: "Series 11 Ultra no pulso",
+      },
+    ],
+    badgeSize: "49mm",
+    badgeLabel: "MAIOR TELA",
+    title: "Series 11 Ultra",
+    description:
+      "Design robusto, ideal para pulsos mais largos. A maior tela da linha para quem quer visibilidade máxima.",
+    videoId: "25q3ta3r2w",
+  },
+  {
+    images: [
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp",
+        alt: "Smartwatch Series 11 Pro 47mm",
+      },
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11pro-QnxU8cUS5pEWkAC5SgV3Qy1ci2cKah.webp",
+        alt: "Series 11 Pro no pulso",
+      },
+    ],
+    badgeSize: "47mm",
+    badgeLabel: "BORDA INFINITA",
+    title: "Series 11 Pro",
+    description: "Tela borda infinita com design clássico. Ideal para pulsos medianos e largos.",
+    videoId: "9lt7mipuad",
+  },
+  {
+    images: [
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp",
+        alt: "Smartwatch S11 Pro Mini 42mm",
+      },
+      {
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsos11promini-jlpZN6QErznUObkwmt6GkBTyHXsjAP.webp",
+        alt: "S11 Pro Mini no pulso",
+      },
+    ],
+    badgeSize: "42mm",
+    badgeLabel: "MINIMALISTA",
+    title: "S11 Pro Mini",
+    description: "Tela borda infinita com design minimalista. Ideal para pulsos femininos médio e fino.",
+    videoId: "724zt9lhcf",
+  },
+]
 
 // Hook otimizado para fade-in na rolagem
 function useFadeIn() {
@@ -70,6 +125,7 @@ export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [offerEndLabel, setOfferEndLabel] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const bgImageRef = useRef<HTMLDivElement>(null)
 
   // Contador da oferta: ciclo de 7 dias que reseta ao chegar no 2º dia
   useEffect(() => {
@@ -114,8 +170,20 @@ export default function LandingPage() {
 
   // Detectar scroll para mudar header
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY
+          if (bgImageRef.current) {
+            // Parallax sutil: imagem move mais devagar que a página
+            bgImageRef.current.style.transform = `translate3d(0, ${y * 0.15}px, 0) scale(1.1)`
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -407,6 +475,15 @@ export default function LandingPage() {
 
       {/* Camada decorativa de fundo - brilhos e grade sutil */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {/* Imagem abstrata com parallax na rolagem */}
+        <div
+          ref={bgImageRef}
+          className="absolute inset-0 -top-[10%] h-[120%] bg-cover bg-center opacity-[0.35] will-change-transform"
+          style={{
+            backgroundImage: "url(/abstract-bg.png)",
+            transform: "translate3d(0, 0, 0) scale(1.1)",
+          }}
+        />
         {/* Grade técnica sutil */}
         <div className="bg-grid-glow absolute inset-0 opacity-[0.18]" />
         {/* Brilhos ambientes laranja */}
@@ -1065,112 +1142,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            {/* Series 11 Ultra */}
-            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <CardImageSwiper
-                images={[
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp",
-                    alt: "Smartwatch Series 11 Ultra 49mm",
-                  },
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11ultra-DN8ZLXo3Eu3P75BtOxTjtnqpRghixB.webp",
-                    alt: "Series 11 Ultra no pulso",
-                  },
-                ]}
-              />
-              <div className="p-4 md:p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">49mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">MAIOR TELA</span>
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Series 11 Ultra</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Design robusto, ideal para pulsos mais largos. A maior tela da linha para quem quer visibilidade máxima.
-                </p>
-  <button
-  onClick={() => setActiveVideo("25q3ta3r2w")}
-  className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-lg shadow-orange-500/30 group/btn"
-  >
-  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
-    <Play className="w-3 h-3 fill-current" />
-  </span>
-  Ver Vídeo
-  </button>
-              </div>
-            </div>
-
-            {/* Series 11 Pro */}
-            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <CardImageSwiper
-                images={[
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp",
-                    alt: "Smartwatch Series 11 Pro 47mm",
-                  },
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11pro-QnxU8cUS5pEWkAC5SgV3Qy1ci2cKah.webp",
-                    alt: "Series 11 Pro no pulso",
-                  },
-                ]}
-              />
-              <div className="p-4 md:p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">47mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">BORDA INFINITA</span>
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Series 11 Pro</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Tela borda infinita com design clássico. Ideal para pulsos medianos e largos.
-                </p>
-                <button
-                  onClick={() => setActiveVideo("9lt7mipuad")}
-                  className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-lg shadow-orange-500/30"
-                >
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
-                    <Play className="w-3 h-3 fill-current" />
-                  </span>
-                  Ver Vídeo
-                </button>
-              </div>
-            </div>
-
-            {/* S11 Pro Mini */}
-            <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <CardImageSwiper
-                images={[
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp",
-                    alt: "Smartwatch S11 Pro Mini 42mm",
-                  },
-                  {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsos11promini-jlpZN6QErznUObkwmt6GkBTyHXsjAP.webp",
-                    alt: "S11 Pro Mini no pulso",
-                  },
-                ]}
-              />
-              <div className="p-4 md:p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">42mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">MINIMALISTA</span>
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">S11 Pro Mini</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Tela borda infinita com design minimalista. Ideal para pulsos femininos médio e fino.
-                </p>
-                <button
-                  onClick={() => setActiveVideo("724zt9lhcf")}
-                  className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-lg shadow-orange-500/30"
-                >
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
-                    <Play className="w-3 h-3 fill-current" />
-                  </span>
-                  Ver Vídeo
-                </button>
-              </div>
-            </div>
-          </div>
+          <ModelsCarousel models={MODELS} onPlayVideo={(id) => setActiveVideo(id)} />
 
           {/* Confira as Funções - Botão */}
           <div className="mt-6 md:mt-8 flex justify-center">
