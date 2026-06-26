@@ -23,6 +23,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Hero3D } from "@/components/hero-3d"
+import { CardImageSwiper } from "@/components/card-image-swiper"
 
 // Hook otimizado para fade-in na rolagem
 function useFadeIn() {
@@ -52,7 +53,6 @@ function useFadeIn() {
 
 export default function LandingPage() {
   const [visitCount, setVisitCount] = useState(20)
-  const [showWristImage, setShowWristImage] = useState(false)
   const [showPromoPopup, setShowPromoPopup] = useState(false)
   const [isPopupClosing, setIsPopupClosing] = useState(false)
   const [showSizeGuide, setShowSizeGuide] = useState(false)
@@ -398,21 +398,24 @@ export default function LandingPage() {
     }
   }, [])
 
-
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowWristImage((prev) => !prev)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
-
   const whatsappLink = "https://tintim.link/whatsapp/805044db-e307-4a5a-b566-b1ee3911b3f3/dd46302b-1cfd-415f-bda0-f2d785c160ea"
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Canvas Background - Fixo na tela */}
       <canvas ref={canvasRef} className="fixed inset-0 z-0" />
+
+      {/* Camada decorativa de fundo - brilhos e grade sutil */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {/* Grade técnica sutil */}
+        <div className="bg-grid-glow absolute inset-0 opacity-[0.18]" />
+        {/* Brilhos ambientes laranja */}
+        <div className="bg-orb bg-orb-1" />
+        <div className="bg-orb bg-orb-2" />
+        <div className="bg-orb bg-orb-3" />
+        {/* Vinheta para foco central */}
+        <div className="bg-vignette absolute inset-0" />
+      </div>
 
       {/* Announcement Bar - Barra de mensagens em carrossel (some ao rolar) */}
       <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
@@ -1065,20 +1068,18 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Series 11 Ultra */}
             <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <div className="relative aspect-[5/6] overflow-hidden">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp"
-                  alt="Smartwatch Series 11 Ultra 49mm"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-0" : "opacity-100"}`}
-                />
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11ultra-DN8ZLXo3Eu3P75BtOxTjtnqpRghixB.webp"
-                  alt="Series 11 Ultra no pulso"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-100" : "opacity-0"}`}
-                />
-              </div>
+              <CardImageSwiper
+                images={[
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp",
+                    alt: "Smartwatch Series 11 Ultra 49mm",
+                  },
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11ultra-DN8ZLXo3Eu3P75BtOxTjtnqpRghixB.webp",
+                    alt: "Series 11 Ultra no pulso",
+                  },
+                ]}
+              />
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">49mm</span>
@@ -1102,20 +1103,18 @@ export default function LandingPage() {
 
             {/* Series 11 Pro */}
             <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <div className="relative aspect-[5/6] overflow-hidden">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp"
-                  alt="Smartwatch Series 11 Pro 47mm"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-0" : "opacity-100"}`}
-                />
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11pro-QnxU8cUS5pEWkAC5SgV3Qy1ci2cKah.webp"
-                  alt="Series 11 Pro no pulso"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-100" : "opacity-0"}`}
-                />
-              </div>
+              <CardImageSwiper
+                images={[
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp",
+                    alt: "Smartwatch Series 11 Pro 47mm",
+                  },
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsoseries11pro-QnxU8cUS5pEWkAC5SgV3Qy1ci2cKah.webp",
+                    alt: "Series 11 Pro no pulso",
+                  },
+                ]}
+              />
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">47mm</span>
@@ -1139,20 +1138,18 @@ export default function LandingPage() {
 
             {/* S11 Pro Mini */}
             <div className="glass-border-subtle overflow-hidden hover:border-orange-500/50 transition-all duration-300 group rounded-2xl">
-              <div className="relative aspect-[5/6] overflow-hidden">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp"
-                  alt="Smartwatch S11 Pro Mini 42mm"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-0" : "opacity-100"}`}
-                />
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsos11promini-jlpZN6QErznUObkwmt6GkBTyHXsjAP.webp"
-                  alt="S11 Pro Mini no pulso"
-                  fill
-                  className={`object-cover transition-opacity duration-1000 ease-in-out ${showWristImage ? "opacity-100" : "opacity-0"}`}
-                />
-              </div>
+              <CardImageSwiper
+                images={[
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp",
+                    alt: "Smartwatch S11 Pro Mini 42mm",
+                  },
+                  {
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pulsos11promini-jlpZN6QErznUObkwmt6GkBTyHXsjAP.webp",
+                    alt: "S11 Pro Mini no pulso",
+                  },
+                ]}
+              />
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">42mm</span>
