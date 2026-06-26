@@ -573,6 +573,87 @@ img {
   }
 }
 
+/* ===== CAMADA DECORATIVA DE FUNDO ===== */
+
+/* Grade técnica sutil */
+.bg-grid-glow {
+  background-image:
+    linear-gradient(rgba(255, 122, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 122, 0, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 80%);
+}
+
+/* Brilhos ambientes (orbs) */
+.bg-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform, opacity;
+}
+
+.bg-orb-1 {
+  top: 8%;
+  left: -10%;
+  width: 38vw;
+  height: 38vw;
+  max-width: 460px;
+  max-height: 460px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.22) 0%, rgba(255, 122, 0, 0) 70%);
+  animation: orbDrift1 18s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  top: 42%;
+  right: -12%;
+  width: 42vw;
+  height: 42vw;
+  max-width: 520px;
+  max-height: 520px;
+  background: radial-gradient(circle, rgba(255, 154, 21, 0.18) 0%, rgba(255, 154, 21, 0) 70%);
+  animation: orbDrift2 22s ease-in-out infinite;
+}
+
+.bg-orb-3 {
+  bottom: 4%;
+  left: 30%;
+  width: 34vw;
+  height: 34vw;
+  max-width: 420px;
+  max-height: 420px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.15) 0%, rgba(255, 122, 0, 0) 70%);
+  animation: orbDrift3 26s ease-in-out infinite;
+}
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  50% { transform: translate(40px, 30px) scale(1.1); opacity: 1; }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50px, -20px) scale(1.12); opacity: 0.9; }
+}
+
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(30px, -40px) scale(1.08); opacity: 0.85; }
+}
+
+/* Vinheta sutil para foco no conteúdo */
+.bg-vignette {
+  background: radial-gradient(ellipse 90% 70% at 50% 40%, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb-1,
+  .bg-orb-2,
+  .bg-orb-3 {
+    animation: none !important;
+  }
+}
+
 /* ===== ENTRADA 3D NA ROLAGEM (REVEAL) ===== */
 
 /* Cena com perspectiva para os itens filhos */
