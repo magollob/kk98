@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
-import { Truck, CreditCard } from "lucide-react"
 
 const mobileBanners = [
   {
@@ -19,12 +18,6 @@ const desktopBanner = {
   src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktop-AcuNF1CKi7kIYJepbuarJJa2K3ywLp.webp",
   alt: "Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha",
 }
-
-// Chips comerciais flutuantes (informações já presentes na página)
-const floatingChips = [
-  { icon: CreditCard, label: "Até 6x sem juros", className: "hero-chip-a" },
-  { icon: Truck, label: "Frete grátis no RJ", className: "hero-chip-b" },
-]
 
 /**
  * Hook que aplica um leve tilt 3D interativo ao palco do hero,
@@ -67,28 +60,6 @@ function useTilt() {
   }, [])
 
   return { sceneRef, stageRef, handlePointerMove, handlePointerLeave }
-}
-
-function FloatingChips() {
-  return (
-    <>
-      {/* Chip superior esquerdo */}
-      <div className="pointer-events-none absolute -top-3 left-2 z-20 md:top-6 md:left-6">
-        <div className={`${floatingChips[0].className} flex items-center gap-2 rounded-full liquid-glass px-3 py-1.5 md:px-4 md:py-2`}>
-          <CreditCard className="h-3.5 w-3.5 text-orange-400 md:h-4 md:w-4" />
-          <span className="text-[11px] font-semibold text-white md:text-sm">{floatingChips[0].label}</span>
-        </div>
-      </div>
-
-      {/* Chip inferior direito */}
-      <div className="pointer-events-none absolute -bottom-2 right-2 z-20 md:bottom-8 md:right-6">
-        <div className={`${floatingChips[1].className} flex items-center gap-2 rounded-full liquid-glass px-3 py-1.5 md:px-4 md:py-2`}>
-          <Truck className="h-3.5 w-3.5 text-orange-400 md:h-4 md:w-4" />
-          <span className="text-[11px] font-semibold text-white md:text-sm">{floatingChips[1].label}</span>
-        </div>
-      </div>
-    </>
-  )
 }
 
 function MobileHero() {
@@ -166,8 +137,6 @@ function MobileHero() {
                 aria-hidden="true"
               />
             </div>
-
-            <FloatingChips />
           </div>
         </div>
       </div>
@@ -228,8 +197,6 @@ function DesktopHero() {
                 aria-hidden="true"
               />
             </div>
-
-            <FloatingChips />
           </div>
         </div>
       </div>
