@@ -22,7 +22,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { MobileBannerCarousel } from "@/components/mobile-banner-carousel"
+import { Hero3D } from "@/components/hero-3d"
 
 // Hook otimizado para fade-in na rolagem
 function useFadeIn() {
@@ -1044,17 +1044,8 @@ export default function LandingPage() {
 
       {/* Banner Principal */}
       <section id="home" className="relative z-10 w-full pt-[100px] md:pt-[100px]">
-        {/* Banner Mobile - Carrossel giratório */}
-        <MobileBannerCarousel />
-        {/* Banner Desktop */}
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headdesktop-AcuNF1CKi7kIYJepbuarJJa2K3ywLp.webp"
-          alt="Lançamentos 2026 Microwear - Os novos Series 11 - Smart Ilha"
-          width={1920}
-          height={768}
-          className="hidden md:block w-full h-auto"
-          priority
-        />
+        {/* Hero 3D - banner com profundidade, parallax e flutuação premium */}
+        <Hero3D />
       </section>
 
       <section id="smartwatch" className="relative z-10 flex flex-col items-center justify-start px-4 pt-8 pb-8 md:pt-12 md:pb-12">

@@ -438,3 +438,137 @@ img {
 .menu-closing {
   animation: menu-slide-out 0.25s ease-in forwards;
 }
+
+/* ===== HERO 3D PREMIUM ===== */
+
+/* Contexto de perspectiva para profundidade 3D */
+.hero-3d-scene {
+  perspective: 1400px;
+  perspective-origin: 50% 35%;
+}
+
+/* Palco que recebe o tilt interativo (atualizado via JS) */
+.hero-3d-stage {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Flutuação suave e contínua do banner principal */
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateZ(0) translateY(0px);
+  }
+  50% {
+    transform: translateZ(0) translateY(-10px);
+  }
+}
+
+.hero-float {
+  animation: heroFloat 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Sombra realista projetada sob o banner */
+.hero-banner-shadow {
+  box-shadow:
+    0 24px 60px -18px rgba(0, 0, 0, 0.85),
+    0 10px 28px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Brilho ambiente laranja por trás do banner */
+@keyframes heroGlowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+.hero-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 122, 0, 0.45) 0%,
+    rgba(255, 122, 0, 0.18) 38%,
+    rgba(255, 122, 0, 0) 70%
+  );
+  filter: blur(34px);
+  animation: heroGlowPulse 6s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Reflexo de luz suave deslizando sobre o banner */
+@keyframes heroSheen {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  60%,
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+.hero-sheen {
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 45%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.14) 55%,
+    transparent 100%
+  );
+  animation: heroSheen 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Chips comerciais flutuantes (camada frontal) */
+@keyframes heroChipFloatA {
+  0%,
+  100% {
+    transform: translateY(0) translateZ(60px);
+  }
+  50% {
+    transform: translateY(-9px) translateZ(60px);
+  }
+}
+
+@keyframes heroChipFloatB {
+  0%,
+  100% {
+    transform: translateY(0) translateZ(80px);
+  }
+  50% {
+    transform: translateY(9px) translateZ(80px);
+  }
+}
+
+.hero-chip-a {
+  animation: heroChipFloatA 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-chip-b {
+  animation: heroChipFloatB 5.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Respeitar preferências de redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .hero-float,
+  .hero-glow,
+  .hero-sheen,
+  .hero-chip-a,
+  .hero-chip-b {
+    animation: none !important;
+  }
+  .hero-3d-stage {
+    transform: none !important;
+  }
+}
