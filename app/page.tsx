@@ -197,6 +197,7 @@ export default function LandingPage() {
   const instagramFade = useFadeIn()
   const faqFade = useFadeIn()
   const ctaFade = useFadeIn()
+  const deliveryFade = useFadeIn()
   const review2Ref = useRef<HTMLImageElement>(null)
   const hasOpenedPopupRef = useRef(false)
 
@@ -1001,7 +1002,7 @@ export default function LandingPage() {
                   "Atenção plena com estado psicológico",
                   "Treino de respiração",
                   "Assistente de voz",
-                  "Cronômetro",
+                  "Cron��metro",
                   "Music Player (Controle de Musicas)",
                   "Jogos",
                   "Controle remoto da câmera do celular",
@@ -1415,8 +1416,11 @@ export default function LandingPage() {
         </div>
 
         {/* Seção Entrega Rápida e Garantida */}
-        <div className="w-full max-w-md md:max-w-2xl mb-8 md:mb-12">
-          <div className="text-left mb-4 md:mb-6">
+        <div
+          ref={deliveryFade.ref}
+          className={`reveal-3d-scene w-full max-w-md md:max-w-2xl mb-8 md:mb-12 ${deliveryFade.isVisible ? "is-visible" : ""}`}
+        >
+          <div className="reveal-3d-item rd-1 text-left mb-4 md:mb-6">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
               ENTREGA RÁPIDA
             </h2>
@@ -1429,7 +1433,7 @@ export default function LandingPage() {
           </div>
 
           {/* Imagem do caminhão */}
-          <div className="relative w-full mb-6 md:mb-8">
+          <div className="reveal-3d-item rd-2 relative w-full mb-6 md:mb-8">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/caminhao-xn6h4TI9mAaj3fzgIkBLaWwyngvOZ6.png"
               alt="Caminhão SEDEX Correios com caixas Smart Ilha"
@@ -1443,7 +1447,7 @@ export default function LandingPage() {
           {/* Cards de benefícios */}
           <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
               {/* 1-2 Dias Úteis */}
-              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
+              <div className="reveal-3d-item rd-3 flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-calendar-3d-mgsdK904uaUbddYUX6TvFtIRyQU4UK.webp"
@@ -1461,7 +1465,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia de Entrega */}
-              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
+              <div className="reveal-3d-item rd-4 flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-shield-3d-i1bFzAqrV4erfJuQU5sLLBUGXtCvvt.webp"
@@ -1479,7 +1483,7 @@ export default function LandingPage() {
             </div>
 
               {/* Garantia Contra Extravio */}
-              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
+              <div className="reveal-3d-item rd-5 flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-lock-3d-AJ6u6Xd9m8LHQHU0mkPpd3CdV0Yhz0.jpg"
@@ -1497,7 +1501,7 @@ export default function LandingPage() {
             </div>
 
               {/* Código de Rastreio */}
-              <div className="flex items-center gap-4 glass-border-subtle rounded-xl p-4">
+              <div className="reveal-3d-item rd-6 flex items-center gap-4 glass-border-subtle rounded-xl p-4">
                 <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon-tracking-3d-7M7oOya59OWTbkxO4QLqzwKXlEB2od.webp"
@@ -1516,7 +1520,7 @@ export default function LandingPage() {
           </div>
 
           {/* Timeline do processo */}
-          <div className="liquid-glass rounded-xl p-5 md:p-6 mb-6 md:mb-8">
+          <div className="reveal-3d-item rd-7 liquid-glass rounded-xl p-5 md:p-6 mb-6 md:mb-8">
             <div className="flex items-center justify-between relative">
               {/* Linha conectora */}
               <div className="absolute top-8 left-[10%] right-[10%] h-0.5 bg-orange-500/50"></div>
@@ -1588,7 +1592,7 @@ export default function LandingPage() {
           </div>
 
           {/* Entrega local - Motoboy e Retirada */}
-          <div className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/30 rounded-xl p-4 md:p-5">
+          <div className="reveal-3d-item rd-7 bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/30 rounded-xl p-4 md:p-5">
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-white" />
