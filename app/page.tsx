@@ -1106,7 +1106,7 @@ export default function LandingPage() {
               <CardImageSwiper
                 images={[
                   {
-                          src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-ptqxGmFyCDTEugfrUIupoOtCtTcGHd.webp",
+                          src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-eS7C5YiuXqnH80ZURAyE2TZkqpN4rY.webp",
                     alt: "Smartwatch Series 11 Pro 47mm",
                   },
                   {
@@ -1141,7 +1141,7 @@ export default function LandingPage() {
               <CardImageSwiper
                 images={[
                   {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp",
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-8j8qPHT101hg5LvFMb31WyHxsErebD.webp",
                     alt: "Smartwatch S11 Pro Mini 42mm",
                   },
                   {
