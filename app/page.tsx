@@ -420,12 +420,12 @@ export default function LandingPage() {
       {/* Announcement Bar - Barra de mensagens em carrossel (some ao rolar) */}
       <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
-          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-white px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
             <span>Promoção Copa de Brindes</span>
           </span>
-          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-black px-4">
+          <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-white px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
             <span>Promoção Copa de Brindes</span>
@@ -1071,7 +1071,7 @@ export default function LandingPage() {
               <CardImageSwiper
                 images={[
                   {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-ivh8EAhP37F5bvDQLoQyjzZtVjMu6x.webp",
+                          src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11ultra-dfUoQz0KZ7nrUR19nB6TARkt1cvh56.webp",
                     alt: "Smartwatch Series 11 Ultra 49mm",
                   },
                   {
@@ -1106,7 +1106,7 @@ export default function LandingPage() {
               <CardImageSwiper
                 images={[
                   {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-mu97IGpYVVPA96meRty7RvGt86dYy7.webp",
+                          src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/series11pro-eS7C5YiuXqnH80ZURAyE2TZkqpN4rY.webp",
                     alt: "Smartwatch Series 11 Pro 47mm",
                   },
                   {
@@ -1141,7 +1141,7 @@ export default function LandingPage() {
               <CardImageSwiper
                 images={[
                   {
-                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-J1yd35MDQWu7EPfD9vnI0M8QCxMSlz.webp",
+                    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/s11promini-8j8qPHT101hg5LvFMb31WyHxsErebD.webp",
                     alt: "Smartwatch S11 Pro Mini 42mm",
                   },
                   {
