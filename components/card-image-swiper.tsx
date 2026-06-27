@@ -1,8 +1,7 @@
 "use client"
 
-import { useRef, useState, useCallback } from "react"
+import { useRef, useState, useCallback, useEffect } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface SwiperImage {
   src: string
@@ -34,8 +33,15 @@ export function CardImageSwiper({
   )
 
   const goTo = useCallback((i: number) => setIndex((prev) => Math.max(0, Math.min(count - 1, i))), [count])
-  const next = useCallback(() => goTo(index + 1), [goTo, index])
-  const prev = useCallback(() => goTo(index - 1), [goTo, index])
+
+  // Troca automática de imagens a cada 2.5s (loop), pausando durante o arraste
+  useEffect(() => {
+    if (count <= 1 || isDragging) return
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % count)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [count, isDragging])
 
   const handleStart = useCallback((clientX: number) => {
     setIsDragging(true)
@@ -99,30 +105,6 @@ export function CardImageSwiper({
           </div>
         ))}
       </div>
-
-      {/* Setas - navegação por clique */}
-      {count > 1 && (
-        <>
-          <button
-            type="button"
-            onClick={prev}
-            disabled={index === 0}
-            aria-label="Foto anterior"
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-black/45 text-white backdrop-blur-sm border border-white/15 transition-opacity disabled:opacity-0 hover:bg-black/65 active:scale-90"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            disabled={index === count - 1}
-            aria-label="Próxima foto"
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-black/45 text-white backdrop-blur-sm border border-white/15 transition-opacity disabled:opacity-0 hover:bg-black/65 active:scale-90"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </>
-      )}
 
       {/* Indicadores (dots) */}
       {count > 1 && (

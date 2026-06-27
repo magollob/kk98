@@ -65,7 +65,6 @@ function useTilt() {
 function MobileHero() {
   const [current, setCurrent] = useState(0)
   const touchStartX = useRef<number | null>(null)
-  const { sceneRef, stageRef, handlePointerMove, handlePointerLeave } = useTilt()
 
   const next = useCallback(() => setCurrent((prev) => (prev + 1) % mobileBanners.length), [])
   const prev = useCallback(() => setCurrent((p) => (p - 1 + mobileBanners.length) % mobileBanners.length), [])
@@ -90,54 +89,28 @@ function MobileHero() {
   }
 
   return (
-    <div className="block w-full px-4 pt-2 md:hidden">
+    <div className="block w-full md:hidden">
       <div
-        ref={sceneRef}
-        className="hero-3d-scene relative mx-auto w-full max-w-md"
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
+        className="relative w-full overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        {/* Glow ambiente por trás do banner */}
-        <div className="hero-glow absolute inset-x-4 -bottom-4 top-6 z-0 rounded-[2rem]" aria-hidden="true" />
-
-        <div ref={stageRef} className="hero-3d-stage relative z-10">
-          <div className="hero-float relative">
-            <div
-              className="hero-banner-shadow relative overflow-hidden rounded-3xl"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${current * 100}%)` }}
-              >
-                {mobileBanners.map((banner, i) => (
-                  <div key={i} className="relative aspect-[3/4] w-full flex-shrink-0">
-                    <Image
-                      src={banner.src || "/placeholder.svg"}
-                      alt={banner.alt}
-                      fill
-                      priority={i === 0}
-                      sizes="100vw"
-                      className="object-cover object-top"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Reflexo de luz premium */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl" aria-hidden="true">
-                <div className="hero-sheen absolute inset-y-0 -left-1/3 w-1/2" />
-              </div>
-
-              {/* Vinheta sutil para profundidade */}
-              <div
-                className="pointer-events-none absolute inset-0 rounded-3xl"
-                style={{ boxShadow: "inset 0 -40px 60px -30px rgba(0,0,0,0.6)" }}
-                aria-hidden="true"
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {mobileBanners.map((banner, i) => (
+            <div key={i} className="relative aspect-[3/4] w-full flex-shrink-0">
+              <Image
+                src={banner.src || "/placeholder.svg"}
+                alt={banner.alt}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover object-top"
               />
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
