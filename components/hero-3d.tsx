@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const mobileBanners = [
   {
@@ -20,137 +21,149 @@ const desktopBanner = {
 }
 
 /**
- * Hook que aplica um leve tilt 3D interativo ao palco do hero,
- * seguindo o ponteiro (desktop) e mantendo movimento suave.
+ * Carrossel infinito full-wide para mobile.
+ * - Loop contínuo nos dois sentidos usando slides clonados nas pontas.
+ * - Suporte a arrasto (touch) e setas de navegação.
  */
-function useTilt() {
-  const sceneRef = useRef<HTMLDivElement>(null)
-  const stageRef = useRef<HTMLDivElement>(null)
-  const frame = useRef<number | null>(null)
-
-  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    const scene = sceneRef.current
-    const stage = stageRef.current
-    if (!scene || !stage) return
-
-    const rect = scene.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-
-    if (frame.current) cancelAnimationFrame(frame.current)
-    frame.current = requestAnimationFrame(() => {
-      // Inclinação sutil para não comprometer a leitura
-      const rotateY = x * 8
-      const rotateX = -y * 8
-      stage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-    })
-  }, [])
-
-  const handlePointerLeave = useCallback(() => {
-    const stage = stageRef.current
-    if (!stage) return
-    if (frame.current) cancelAnimationFrame(frame.current)
-    stage.style.transform = "rotateX(0deg) rotateY(0deg)"
-  }, [])
-
-  useEffect(() => {
-    return () => {
-      if (frame.current) cancelAnimationFrame(frame.current)
-    }
-  }, [])
-
-  return { sceneRef, stageRef, handlePointerMove, handlePointerLeave }
-}
-
 function MobileHero() {
-  const [current, setCurrent] = useState(0)
+  const banners = mobileBanners
+  // Slides com clones nas extremidades para o loop infinito:
+  // [ último(clone), ...reais, primeiro(clone) ]
+  const slides = [banners[banners.length - 1], ...banners, banners[0]]
+
+  const [index, setIndex] = useState(1)
+  const [withTransition, setWithTransition] = useState(true)
+  const isAnimating = useRef(false)
   const touchStartX = useRef<number | null>(null)
-  const { sceneRef, stageRef, handlePointerMove, handlePointerLeave } = useTilt()
+  const dragDelta = useRef(0)
 
-  const next = useCallback(() => setCurrent((prev) => (prev + 1) % mobileBanners.length), [])
-  const prev = useCallback(() => setCurrent((p) => (p - 1 + mobileBanners.length) % mobileBanners.length), [])
+  const goNext = useCallback(() => {
+    if (isAnimating.current) return
+    isAnimating.current = true
+    setWithTransition(true)
+    setIndex((i) => i + 1)
+  }, [])
 
+  const goPrev = useCallback(() => {
+    if (isAnimating.current) return
+    isAnimating.current = true
+    setWithTransition(true)
+    setIndex((i) => i - 1)
+  }, [])
+
+  const goTo = useCallback((real: number) => {
+    if (isAnimating.current) return
+    isAnimating.current = true
+    setWithTransition(true)
+    setIndex(real + 1)
+  }, [])
+
+  // Ao chegar num clone, salta instantaneamente para o slide real equivalente.
+  const handleTransitionEnd = () => {
+    isAnimating.current = false
+    if (index === slides.length - 1) {
+      setWithTransition(false)
+      setIndex(1)
+    } else if (index === 0) {
+      setWithTransition(false)
+      setIndex(banners.length)
+    }
+  }
+
+  // Reativa a transição após o salto instantâneo.
   useEffect(() => {
-    const timer = setInterval(next, 4500)
+    if (!withTransition) {
+      const id = requestAnimationFrame(() => setWithTransition(true))
+      return () => cancelAnimationFrame(id)
+    }
+  }, [withTransition])
+
+  // Autoplay contínuo.
+  useEffect(() => {
+    const timer = setInterval(goNext, 4500)
     return () => clearInterval(timer)
-  }, [next])
+  }, [goNext])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
+    dragDelta.current = 0
   }
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return
-    const diff = touchStartX.current - e.changedTouches[0].clientX
+    dragDelta.current = touchStartX.current - e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null) return
+    const diff = dragDelta.current
     if (Math.abs(diff) > 40) {
-      if (diff > 0) next()
-      else prev()
+      if (diff > 0) goNext()
+      else goPrev()
     }
     touchStartX.current = null
+    dragDelta.current = 0
   }
 
+  const realIndex = (index - 1 + banners.length) % banners.length
+
   return (
-    <div className="block w-full px-4 pt-2 md:hidden">
+    <div className="block w-full md:hidden">
       <div
-        ref={sceneRef}
-        className="hero-3d-scene relative mx-auto w-full max-w-md"
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
+        className="relative w-full overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        {/* Glow ambiente por trás do banner */}
-        <div className="hero-glow absolute inset-x-4 -bottom-4 top-6 z-0 rounded-[2rem]" aria-hidden="true" />
-
-        <div ref={stageRef} className="hero-3d-stage relative z-10">
-          <div className="hero-float relative">
-            <div
-              className="hero-banner-shadow relative overflow-hidden rounded-3xl"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${current * 100}%)` }}
-              >
-                {mobileBanners.map((banner, i) => (
-                  <div key={i} className="relative aspect-[3/4] w-full flex-shrink-0">
-                    <Image
-                      src={banner.src || "/placeholder.svg"}
-                      alt={banner.alt}
-                      fill
-                      priority={i === 0}
-                      sizes="100vw"
-                      className="object-cover object-top"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Reflexo de luz premium */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl" aria-hidden="true">
-                <div className="hero-sheen absolute inset-y-0 -left-1/3 w-1/2" />
-              </div>
-
-              {/* Vinheta sutil para profundidade */}
-              <div
-                className="pointer-events-none absolute inset-0 rounded-3xl"
-                style={{ boxShadow: "inset 0 -40px 60px -30px rgba(0,0,0,0.6)" }}
-                aria-hidden="true"
+        <div
+          className={`flex ${withTransition ? "transition-transform duration-500 ease-out" : ""}`}
+          style={{ transform: `translateX(-${index * 100}%)` }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {slides.map((banner, i) => (
+            <div key={i} className="relative aspect-[3/4] w-full flex-shrink-0">
+              <Image
+                src={banner.src || "/placeholder.svg"}
+                alt={banner.alt}
+                fill
+                priority={i === 1}
+                sizes="100vw"
+                className="object-cover object-top"
+                draggable={false}
               />
             </div>
-          </div>
+          ))}
         </div>
+
+        {/* Setas de navegação */}
+        <button
+          type="button"
+          onClick={goPrev}
+          aria-label="Banner anterior"
+          className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors active:bg-black/60"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Próximo banner"
+          className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors active:bg-black/60"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
       </div>
 
       {/* Indicadores */}
-      <div className="flex items-center justify-center gap-2 py-4">
-        {mobileBanners.map((_, i) => (
+      <div className="flex items-center justify-center gap-2 bg-black py-3">
+        {banners.map((_, i) => (
           <button
             key={i}
             type="button"
-            onClick={() => setCurrent(i)}
+            onClick={() => goTo(i)}
             aria-label={`Ir para o banner ${i + 1}`}
             className={`h-2 rounded-full transition-all duration-300 ${
-              current === i ? "w-6 bg-orange-500" : "w-2 bg-white/40"
+              realIndex === i ? "w-6 bg-orange-500" : "w-2 bg-white/40"
             }`}
           />
         ))}
@@ -160,47 +173,15 @@ function MobileHero() {
 }
 
 function DesktopHero() {
-  const { sceneRef, stageRef, handlePointerMove, handlePointerLeave } = useTilt()
-
   return (
-    <div className="hidden w-full px-6 pt-4 md:block">
-      <div
-        ref={sceneRef}
-        className="hero-3d-scene relative mx-auto w-full max-w-7xl"
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
-      >
-        {/* Glow ambiente */}
-        <div className="hero-glow absolute inset-x-10 -bottom-6 top-8 z-0 rounded-[3rem]" aria-hidden="true" />
-
-        <div ref={stageRef} className="hero-3d-stage relative z-10">
-          <div className="hero-float relative">
-            <div className="hero-banner-shadow relative overflow-hidden rounded-[2rem]">
-              <Image
-                src={desktopBanner.src || "/placeholder.svg"}
-                alt={desktopBanner.alt}
-                width={1920}
-                height={768}
-                className="h-auto w-full"
-                priority
-              />
-
-              {/* Reflexo de luz premium */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem]" aria-hidden="true">
-                <div className="hero-sheen absolute inset-y-0 -left-1/3 w-1/3" />
-              </div>
-
-              {/* Vinheta sutil */}
-              <div
-                className="pointer-events-none absolute inset-0 rounded-[2rem]"
-                style={{ boxShadow: "inset 0 -60px 90px -50px rgba(0,0,0,0.55)" }}
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Image
+      src={desktopBanner.src || "/placeholder.svg"}
+      alt={desktopBanner.alt}
+      width={1920}
+      height={768}
+      className="hidden h-auto w-full md:block"
+      priority
+    />
   )
 }
 
