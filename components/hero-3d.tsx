@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 
 const mobileBanners = [
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bannerhead2-pRJgtY8HwGpEKxgbOliIPUp9U7IIzT.webp",
-    alt: "Copa de Brindes - 30% OFF no primeiro smartwatch e 10% no segundo - Smart Ilha",
+    alt: "Show de Brindes - 30% OFF no primeiro smartwatch e 10% no segundo - Smart Ilha",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-gl1by3fooOMXJ28ucYYFIvfBcCFCGy.png",
@@ -63,70 +63,19 @@ function useTilt() {
 }
 
 function MobileHero() {
-  const [current, setCurrent] = useState(0)
-  const touchStartX = useRef<number | null>(null)
-
-  const next = useCallback(() => setCurrent((prev) => (prev + 1) % mobileBanners.length), [])
-  const prev = useCallback(() => setCurrent((p) => (p - 1 + mobileBanners.length) % mobileBanners.length), [])
-
-  useEffect(() => {
-    const timer = setInterval(next, 4500)
-    return () => clearInterval(timer)
-  }, [next])
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return
-    const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) next()
-      else prev()
-    }
-    touchStartX.current = null
-  }
+  const banner = mobileBanners[1]
 
   return (
     <div className="block w-full md:hidden">
-      <div
-        className="relative w-full overflow-hidden"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
-          {mobileBanners.map((banner, i) => (
-            <div key={i} className="relative aspect-[3/4] w-full flex-shrink-0">
-              <Image
-                src={banner.src || "/placeholder.svg"}
-                alt={banner.alt}
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-cover object-top"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Indicadores */}
-      <div className="flex items-center justify-center gap-2 py-4">
-        {mobileBanners.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setCurrent(i)}
-            aria-label={`Ir para o banner ${i + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              current === i ? "w-6 bg-orange-500" : "w-2 bg-white/40"
-            }`}
-          />
-        ))}
+      <div className="relative aspect-[3/4] w-full overflow-hidden">
+        <Image
+          src={banner.src || "/placeholder.svg"}
+          alt={banner.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-top"
+        />
       </div>
     </div>
   )
