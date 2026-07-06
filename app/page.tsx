@@ -423,12 +423,12 @@ export default function LandingPage() {
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-white px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Copa de Brindes</span>
+            <span>Promoção Show de Brindes</span>
           </span>
           <span className="inline-flex items-center gap-8 md:gap-16 text-xs md:text-sm font-medium text-white px-4">
             <span>Até 6x sem juros</span>
             <span>Frete grátis para todo o RJ</span>
-            <span>Promoção Copa de Brindes</span>
+            <span>Promoção Show de Brindes</span>
           </span>
         </div>
       </div>
@@ -1328,7 +1328,7 @@ export default function LandingPage() {
             <div className="flex justify-center">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/brindes2-6JGvWlxzoJ49EfKifxxpFvPIs7jbFx.webp"
-                alt="Brindes da Copa de Brindes - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película para smartwatch, capinha protetora e 25% de desconto"
+                alt="Brindes do Show de Brindes - Kit completo com pulseiras extras, 90 dias de garantia, frete grátis, suporte vitalício, fone bluetooth, kit película para smartwatch, capinha protetora e 25% de desconto"
                 width={500}
                 height={1200}
                 className="w-full max-w-md h-auto"

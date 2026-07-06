@@ -6,7 +6,7 @@ import Image from "next/image"
 const banners = [
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bannerhead2-pRJgtY8HwGpEKxgbOliIPUp9U7IIzT.webp",
-    alt: "Copa de Brindes - 30% OFF no primeiro smartwatch e 10% no segundo - Smart Ilha",
+    alt: "Show de Brindes - 30% OFF no primeiro smartwatch e 10% no segundo - Smart Ilha",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/headmobile-gl1by3fooOMXJ28ucYYFIvfBcCFCGy.png",
