@@ -1650,93 +1650,103 @@ export default function LandingPage() {
           />
         </div>
 
-        {/* Seção FAQ */}
+        {/* Seção FAQ - faixa clara com blend para separar do fundo escuro */}
         <div
           ref={faqFade.ref}
-          className={`w-full max-w-md md:max-w-3xl transition-all duration-700 ease-out mb-8 md:mb-12 ${faqFade.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen transition-all duration-700 ease-out mb-8 md:mb-12 ${faqFade.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3 tracking-tight">
-              Dúvidas <span className="text-orange-400">Frequentes</span>
-            </h2>
-            <p className="text-gray-300 text-base md:text-lg">
-              Compre com segurança, entrega rápida e garantia real.
-            </p>
-          </div>
+          {/* Blend superior: escuro -> claro */}
+          <div aria-hidden className="h-16 md:h-24 w-full bg-gradient-to-b from-transparent to-slate-50" />
 
-          <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
+          <div className="bg-slate-50 px-4 py-10 md:py-14">
+            <div className="mx-auto w-full max-w-md md:max-w-3xl">
+              <div className="text-center mb-6 md:mb-8">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight">
+                  Dúvidas <span className="text-orange-600">Frequentes</span>
+                </h2>
+                <p className="text-gray-600 text-base md:text-lg">
+                  Compre com segurança, entrega rápida e garantia real.
+                </p>
+              </div>
+
+              <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
             <AccordionItem
               value="item-1"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 Como faço para comprar?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Basta entrar em contato pelo nosso WhatsApp (logo abaixo). Um atendente 100% humanizado irá te ajudar em todo o processo, desde a escolha do produto até a finalização do pedido, de forma rápida, simples e segura.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem
               value="item-2"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 Os produtos são à pronta entrega?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Sim, trabalhamos exclusivamente com produtos em estoque. Durante o atendimento, os itens são separados em tempo real para garantir a disponibilidade antes da finalização da compra.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem
               value="item-3"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 A loja Smart Ilha é confiável?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Sim, a Smart Ilha é uma loja confiável, com mais de 3 anos de atuação no mercado, mais de 25.000 seguidores e clientes no Instagram e zero reclamações no Reclame Aqui.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem
               value="item-4"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 Os produtos têm garantia?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Sim, todos os smartwatches possuem 90 dias de garantia contra defeitos de fabricação. Caso ocorra qualquer problema, nosso suporte resolve de forma rápida e sem burocracia.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem
               value="item-5"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 Qual o prazo de entrega?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Para clientes da Ilha do Governador (RJ), realizamos entrega no mesmo dia via motoboy. Para outras regiões do Rio de Janeiro, o envio é feito via SEDEX, com prazo médio de 1 a 2 dias úteis.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem
               value="item-6"
-              className="bg-gray-900/70 backdrop-blur-md border border-orange-500/20 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-500/40 transition-all duration-300 px-4 md:px-6"
+              className="bg-white border border-gray-200 rounded-xl md:rounded-2xl overflow-hidden hover:border-orange-400 shadow-sm transition-all duration-300 px-4 md:px-6"
             >
-              <AccordionTrigger className="text-white text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="text-gray-900 text-left text-sm md:text-base font-medium py-4 md:py-5 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                 O pedido tem garantia de entrega?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-600 text-sm md:text-base pb-4 md:pb-5 leading-relaxed">
                 Sim, a Smart Ilha oferece 100% de garantia de entrega. Todos os pedidos possuem código de rastreio, transporte seguro e proteção total em caso de perda ou extravio.
               </AccordionContent>
             </AccordionItem>
-          </Accordion>
+              </Accordion>
+            </div>
+          </div>
+
+          {/* Blend inferior: claro -> escuro */}
+          <div aria-hidden className="h-16 md:h-24 w-full bg-gradient-to-b from-slate-50 to-transparent" />
         </div>
 
         {/* Pronto para encontrar seu Smartwatch Ideal? */}
