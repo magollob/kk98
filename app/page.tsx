@@ -401,22 +401,7 @@ export default function LandingPage() {
   const whatsappLink = "https://tintim.link/whatsapp/805044db-e307-4a5a-b566-b1ee3911b3f3/dd46302b-1cfd-415f-bda0-f2d785c160ea"
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Canvas Background - Fixo na tela */}
-      <canvas ref={canvasRef} className="fixed inset-0 z-0" />
-
-      {/* Camada decorativa de fundo - brilhos e grade sutil */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {/* Grade técnica sutil */}
-        <div className="bg-grid-glow absolute inset-0 opacity-[0.18]" />
-        {/* Brilhos ambientes laranja */}
-        <div className="bg-orb bg-orb-1" />
-        <div className="bg-orb bg-orb-2" />
-        <div className="bg-orb bg-orb-3" />
-        {/* Vinheta para foco central */}
-        <div className="bg-vignette absolute inset-0" />
-      </div>
-
+    <div className="min-h-screen bg-offwhite relative overflow-hidden">
       {/* Announcement Bar - Barra de mensagens em carrossel (some ao rolar) */}
       <div className={`fixed top-0 left-0 right-0 z-[60] bg-orange-500 overflow-hidden transition-all duration-300 ${isScrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         <div className="announcement-carousel whitespace-nowrap py-1.5 md:py-2">
@@ -440,7 +425,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <button
               onClick={openMobileMenu}
-              className="md:hidden p-2 -ml-2 text-white hover:text-orange-400 transition-colors"
+              className="md:hidden p-2 -ml-2 text-graphite hover:text-orange-500 transition-colors"
               aria-label="Abrir menu"
             >
               <Menu className="w-6 h-6" />
@@ -456,7 +441,7 @@ export default function LandingPage() {
                 className="h-12 w-auto"
               />
               {isScrolled && offerEndLabel && (
-                <span className="text-[10px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-1">
+                <span className="text-[10px] leading-none text-gray-text font-medium tracking-wide mt-1">
                   Oferta termina dia: {offerEndLabel}
                 </span>
               )}
@@ -473,7 +458,7 @@ export default function LandingPage() {
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8' : 'h-12'}`}
             />
             {isScrolled && offerEndLabel && (
-              <span className="text-[9px] leading-none text-[#F5F5F0]/90 font-light tracking-wide mt-0.5">
+              <span className="text-[9px] leading-none text-gray-text font-medium tracking-wide mt-0.5">
                 Oferta termina dia: {offerEndLabel}
               </span>
             )}
@@ -483,25 +468,25 @@ export default function LandingPage() {
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+              className="text-graphite hover:text-orange-500 transition-colors font-medium text-sm uppercase tracking-wide"
             >
               Inicio
             </button>
             <button
               onClick={() => scrollToSection('smartwatch')}
-              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+              className="text-graphite hover:text-orange-500 transition-colors font-medium text-sm uppercase tracking-wide"
             >
               Smartwatch
             </button>
             <button
               onClick={() => scrollToSection('valores')}
-              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+              className="text-graphite hover:text-orange-500 transition-colors font-medium text-sm uppercase tracking-wide"
             >
               Valores
             </button>
             <button
               onClick={() => scrollToSection('avaliacoes')}
-              className="text-white hover:text-orange-400 transition-colors font-medium text-sm uppercase tracking-wide"
+              className="text-graphite hover:text-orange-500 transition-colors font-medium text-sm uppercase tracking-wide"
             >
               Avaliacoes
             </button>
@@ -512,7 +497,7 @@ export default function LandingPage() {
         </div>
         
         {/* Linha separadora Liquid Glass */}
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-graphite/10 to-transparent"></div>
       </header>
 
       {/* Menu Mobile Overlay */}
@@ -527,7 +512,7 @@ export default function LandingPage() {
           {/* Menu Panel */}
           <div className={`absolute top-0 left-0 h-full w-72 max-w-[80vw] liquid-glass flex flex-col ${isMobileMenuClosing ? 'menu-closing' : 'menu-open'}`}>
             {/* Menu Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-interface">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo11-cuksuwu8ou7MvjNmTEi8GVf7KXM1ja.png"
                 alt="Smart Ilha Logo"
@@ -537,7 +522,7 @@ export default function LandingPage() {
               />
               <button
                 onClick={closeMobileMenu}
-                className="p-2 -mr-2 text-white hover:text-orange-400 transition-colors"
+                className="p-2 -mr-2 text-graphite hover:text-orange-500 transition-colors"
                 aria-label="Fechar menu"
               >
                 <X className="w-5 h-5" />
@@ -550,7 +535,7 @@ export default function LandingPage() {
                 <li>
                   <button
                     onClick={() => scrollToSection('home')}
-                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                    className="w-full text-left px-4 py-3 text-graphite hover:text-orange-500 hover:bg-peach rounded-lg transition-all duration-200 font-medium"
                   >
                     Inicio
                   </button>
@@ -558,7 +543,7 @@ export default function LandingPage() {
                 <li>
                   <button
                     onClick={() => scrollToSection('smartwatch')}
-                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                    className="w-full text-left px-4 py-3 text-graphite hover:text-orange-500 hover:bg-peach rounded-lg transition-all duration-200 font-medium"
                   >
                     Smartwatch
                   </button>
@@ -566,7 +551,7 @@ export default function LandingPage() {
                 <li>
                   <button
                     onClick={() => scrollToSection('valores')}
-                    className="w-full text-left px-4 py-3 text-white hover:text-orange-400 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
+                    className="w-full text-left px-4 py-3 text-graphite hover:text-orange-500 hover:bg-peach rounded-lg transition-all duration-200 font-medium"
                   >
                     Valores
                   </button>
@@ -575,8 +560,8 @@ export default function LandingPage() {
             </nav>
 
             {/* Menu Footer */}
-            <div className="px-5 py-4 border-t border-white/10">
-              <p className="text-gray-400 text-xs text-center">
+            <div className="px-5 py-4 border-t border-gray-interface">
+              <p className="text-gray-text text-xs text-center">
                 Smart Ilha - Ilha do Governador, RJ
               </p>
             </div>
@@ -595,11 +580,11 @@ export default function LandingPage() {
         </button>
       )}
 
-      <div className="fixed bottom-4 left-4 z-50 liquid-glass-header rounded-xl px-4 py-2 shadow-lg">
+      <div className="fixed bottom-4 left-4 z-50 liquid-glass rounded-xl px-4 py-2 shadow-lg">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-gray-300 text-xs md:text-sm">
-            <span className="text-orange-400 font-bold">{visitCount}</span> visitas hoje
+          <span className="text-gray-text text-xs md:text-sm">
+            <span className="text-orange-500 font-bold">{visitCount}</span> visitas hoje
           </span>
         </div>
       </div>
@@ -631,74 +616,74 @@ export default function LandingPage() {
           )}
 
           {/* Popup Content */}
-          <div className={`relative liquid-glass-enhanced border-2 border-orange-500/50 rounded-2xl max-w-sm w-full shadow-2xl shadow-orange-500/20 ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative liquid-glass-enhanced rounded-2xl max-w-sm w-full ${isPopupClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="relative bg-gradient-to-b from-orange-900/30 to-transparent p-4 text-center">
+            <div className="relative bg-peach rounded-t-2xl p-4 text-center">
               <div className="flex justify-center items-center gap-2 mb-1">
-                <h2 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-lg">
+                <h2 className="text-2xl md:text-3xl font-black text-orange-500">
                   PROMOÇÃO
                 </h2>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+              <h3 className="text-lg md:text-xl font-bold text-graphite mb-2">
                 SHOW DE BRINDES
               </h3>
-              <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white font-bold py-1.5 px-3 rounded-full text-xs md:text-sm inline-block">
+              <div className="bg-orange-500 text-white font-bold py-1.5 px-3 rounded-full text-xs md:text-sm inline-block">
                 ADQUIRA SEU SMARTWATCH E RECEBA 👇
               </div>
             </div>
 
             {/* Desconto */}
             <div className="px-4 py-2">
-              <div className="border-2 border-orange-500/50 rounded-xl p-3 bg-gradient-to-b from-orange-900/20 to-transparent text-center mb-3">
-                <p className="text-orange-400 font-semibold text-xs mb-0.5">SHOW DE BRINDES</p>
+              <div className="border border-orange-500/40 rounded-xl p-3 bg-peach/60 text-center mb-3">
+                <p className="text-orange-500 font-semibold text-xs mb-0.5">SHOW DE BRINDES</p>
                 <div className="flex items-center justify-center gap-3">
                   <div>
-                    <p className="text-xs text-gray-300 mb-0.5">1º SMARTWATCH</p>
-                    <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                    <p className="text-xs text-gray-text mb-0.5">1º SMARTWATCH</p>
+                    <p className="text-3xl md:text-4xl font-black text-orange-500">
                       30%
                     </p>
-                    <p className="text-sm font-bold text-white">OFF</p>
+                    <p className="text-sm font-bold text-graphite">OFF</p>
                   </div>
-                  <span className="text-2xl text-orange-400 font-bold">+</span>
+                  <span className="text-2xl text-orange-500 font-bold">+</span>
                   <div>
-                    <p className="text-xs text-gray-300 mb-0.5">2º SMARTWATCH</p>
-                    <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                    <p className="text-xs text-gray-text mb-0.5">2º SMARTWATCH</p>
+                    <p className="text-3xl md:text-4xl font-black text-orange-500">
                       10%
                     </p>
-                    <p className="text-sm font-bold text-white">OFF</p>
+                    <p className="text-sm font-bold text-graphite">OFF</p>
                   </div>
                 </div>
               </div>
 
               {/* Lista de Presentes */}
               <div className="space-y-1.5">
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+2</span> PULSEIRAS EXTRAS</span>
-                  <Watch className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+2</span> PULSEIRAS EXTRAS</span>
+                  <Watch className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+1</span> FONE BLUETOOTH AIRDOT</span>
-                  <Headphones className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+1</span> FONE BLUETOOTH AIRDOT</span>
+                  <Headphones className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+</span> KIT PELICULA & LIMPEZA</span>
-                  <Sparkles className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+</span> KIT PELICULA & LIMPEZA</span>
+                  <Sparkles className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+</span> CAPINHA PROTETORA</span>
-                  <Shield className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+</span> CAPINHA PROTETORA</span>
+                  <Shield className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+90</span> DIAS DE GARANTIA</span>
-                  <Shield className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+90</span> DIAS DE GARANTIA</span>
+                  <Shield className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+</span> FRETE GRATIS P/ TODO O RJ</span>
-                  <Truck className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+</span> FRETE GRATIS P/ TODO O RJ</span>
+                  <Truck className="w-4 h-4 text-orange-500" />
                 </div>
-                <div className="bg-gradient-to-r from-orange-500/20 to-transparent border border-orange-500/40 rounded-lg p-2 flex items-center justify-between">
-                  <span className="text-white font-semibold text-xs"><span className="text-orange-400">+</span> SUPORTE ESPECIALIZADO</span>
-                  <Headphones className="w-4 h-4 text-orange-400" />
+                <div className="bg-peach/60 border border-orange-500/30 rounded-lg p-2 flex items-center justify-between">
+                  <span className="text-graphite font-semibold text-xs"><span className="text-orange-500">+</span> SUPORTE ESPECIALIZADO</span>
+                  <Headphones className="w-4 h-4 text-orange-500" />
                 </div>
               </div>
 
@@ -725,16 +710,16 @@ export default function LandingPage() {
           />
 
           {/* Popup Content - Fullscreen mobile, centered desktop */}
-          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative bg-white w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isSizeGuideClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header Fixo */}
-            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 bg-white px-5 py-4 flex items-center justify-between border-b border-gray-interface rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
-                <Ruler className="w-5 h-5 text-orange-400" />
-                <h2 className="text-white text-lg font-bold">Guia de Medidas</h2>
+                <Ruler className="w-5 h-5 text-orange-500" />
+                <h2 className="text-graphite text-lg font-bold">Guia de Medidas</h2>
               </div>
               <button
                 onClick={closeSizeGuide}
-                className="text-gray-400 hover:text-white transition-colors p-1"
+                className="text-gray-text hover:text-graphite transition-colors p-1"
                 aria-label="Fechar guia de medidas"
               >
                 <X className="w-6 h-6" />
@@ -744,59 +729,59 @@ export default function LandingPage() {
             {/* Content com Scroll */}
             <div className="flex-1 overflow-y-auto p-5 md:p-6">
               {/* Titulo */}
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight">
+              <h3 className="text-xl md:text-2xl font-bold text-graphite mb-3 leading-tight">
                 Qual o tamanho ideal do seu smartwatch?
               </h3>
-              <p className="text-gray-400 text-sm md:text-base mb-6">
+              <p className="text-gray-text text-sm md:text-base mb-6">
                 Meça seu punho com uma fita ou barbante e veja a recomendação abaixo:
               </p>
 
               {/* Cards de Tamanhos */}
               <div className="space-y-4">
                 {/* Tamanho P */}
-                <div className="bg-gray-800/60 border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-offwhite border border-gray-interface rounded-xl p-4">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">P</span>
-                    <span className="text-orange-400 font-semibold text-sm">Punho menor que 16 cm</span>
+                    <span className="text-orange-500 font-semibold text-sm">Punho menor que 16 cm</span>
                   </div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Modelos recomendados: <span className="text-white font-semibold">Mini (41mm ou 42mm)</span>
+                  <p className="text-gray-text text-sm leading-relaxed">
+                    Modelos recomendados: <span className="text-graphite font-semibold">Mini (41mm ou 42mm)</span>
                   </p>
                 </div>
 
                 {/* Tamanho M */}
-                <div className="bg-gray-800/60 border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-offwhite border border-gray-interface rounded-xl p-4">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">M</span>
-                    <span className="text-orange-400 font-semibold text-sm">Punho entre 16 e 18 cm</span>
+                    <span className="text-orange-500 font-semibold text-sm">Punho entre 16 e 18 cm</span>
                   </div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Modelos recomendados: <span className="text-white font-semibold">Medios (45mm a 47mm)</span>
+                  <p className="text-gray-text text-sm leading-relaxed">
+                    Modelos recomendados: <span className="text-graphite font-semibold">Medios (45mm a 47mm)</span>
                   </p>
                 </div>
 
                 {/* Tamanho G */}
-                <div className="bg-gray-800/60 border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-offwhite border border-gray-interface rounded-xl p-4">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">G</span>
-                    <span className="text-orange-400 font-semibold text-sm">Punho maior que 18 cm</span>
+                    <span className="text-orange-500 font-semibold text-sm">Punho maior que 18 cm</span>
                   </div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Modelos recomendados: <span className="text-white font-semibold">Grandes (49mm)</span>
+                  <p className="text-gray-text text-sm leading-relaxed">
+                    Modelos recomendados: <span className="text-graphite font-semibold">Grandes (49mm)</span>
                   </p>
                 </div>
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-6 bg-gray-800/40 border border-gray-700/30 rounded-lg p-4">
-                <p className="text-gray-400 text-xs leading-relaxed">
+              <div className="mt-6 bg-offwhite border border-gray-interface rounded-lg p-4">
+                <p className="text-gray-text text-xs leading-relaxed">
                   * Essa sugestão e apenas um direcionamento. Lembre-se de levar em consideracao seu gosto pessoal por relógios maiores ou menores.
                 </p>
               </div>
             </div>
 
             {/* Footer Fixo com Botao */}
-            <div className="sticky bottom-0 bg-gray-900/95 border-t border-gray-700/50 p-4">
+            <div className="sticky bottom-0 bg-white border-t border-gray-interface p-4">
               <button
                 onClick={closeSizeGuide}
                 className="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors"
@@ -819,19 +804,19 @@ export default function LandingPage() {
           />
 
           {/* Popup Content */}
-          <div className={`relative liquid-glass w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative bg-white w-full md:max-w-md md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isInstallmentClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 bg-white px-5 py-4 flex items-center justify-between border-b border-gray-interface rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
                   <line x1="1" y1="10" x2="23" y2="10" />
                 </svg>
-                <h2 className="text-white text-lg font-bold">Parcelamento no Cartão</h2>
+                <h2 className="text-graphite text-lg font-bold">Parcelamento no Cartão</h2>
               </div>
               <button
                 onClick={closeInstallmentPopup}
-                className="text-gray-400 hover:text-white transition-colors p-1"
+                className="text-gray-text hover:text-graphite transition-colors p-1"
                 aria-label="Fechar tabela de parcelamento"
               >
                 <X className="w-6 h-6" />
@@ -841,8 +826,8 @@ export default function LandingPage() {
             {/* Content com Scroll */}
             <div className="flex-1 overflow-y-auto p-5 md:p-6">
               <div className="mb-4">
-                <p className="text-gray-400 text-sm">
-                  Valor do produto: <span className="text-white font-bold">R$325,00</span>
+                <p className="text-gray-text text-sm">
+                  Valor do produto: <span className="text-graphite font-bold">R$325,00</span>
                 </p>
               </div>
 
@@ -863,37 +848,37 @@ export default function LandingPage() {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className={`flex items-center justify-between rounded-xl px-4 py-3 ${index === 0 ? "bg-orange-500/15 border border-orange-500/40" : "bg-gray-800/50 border border-gray-700/30"}`}
+                    className={`flex items-center justify-between rounded-xl px-4 py-3 ${index === 0 ? "bg-peach border border-orange-500/40" : "bg-offwhite border border-gray-interface"}`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`font-black text-base w-8 ${index === 0 ? "text-orange-400" : "text-white"}`}>
+                      <span className={`font-black text-base w-8 ${index === 0 ? "text-orange-500" : "text-graphite"}`}>
                         {item.parcelas}
                       </span>
                       <div>
-                        <span className="text-white font-semibold text-sm">
+                        <span className="text-graphite font-semibold text-sm">
                           {item.valor}
                         </span>
                         {item.semJuros && (
-                          <span className="ml-1.5 text-green-400 text-xs font-medium">sem juros</span>
+                          <span className="ml-1.5 text-green-600 text-xs font-medium">sem juros</span>
                         )}
                       </div>
                     </div>
-                    <span className="text-gray-400 text-xs">
+                    <span className="text-gray-text text-xs">
                       total {item.total}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-5 bg-gray-800/40 border border-gray-700/30 rounded-lg p-4">
-                <p className="text-gray-400 text-xs leading-relaxed">
+              <div className="mt-5 bg-offwhite border border-gray-interface rounded-lg p-4">
+                <p className="text-gray-text text-xs leading-relaxed">
                   * Parcelamento sujeito a aprovação da operadora do cartão. Valores podem variar conforme a bandeira utilizada.
                 </p>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="sticky bottom-0 bg-gray-900/95 border-t border-gray-700/50 p-4">
+            <div className="sticky bottom-0 bg-white border-t border-gray-interface p-4">
               <button
                 onClick={closeInstallmentPopup}
                 className="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors"
@@ -949,16 +934,16 @@ export default function LandingPage() {
             className="absolute inset-0 bg-black/85 backdrop-blur-sm"
             onClick={closeFunctionsPopup}
           />
-          <div className={`relative liquid-glass w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
+          <div className={`relative bg-white w-full md:max-w-lg md:rounded-2xl md:m-4 max-h-[90vh] md:max-h-[85vh] flex flex-col shadow-2xl border-t md:border border-orange-500/30 ${isFunctionsClosing ? 'animate-popup-close' : 'animate-popup-scale'}`}>
             {/* Header */}
-            <div className="sticky top-0 z-10 liquid-glass-header px-5 py-4 flex items-center justify-between border-b border-gray-700/50 rounded-t-none md:rounded-t-2xl">
+            <div className="sticky top-0 z-10 bg-white px-5 py-4 flex items-center justify-between border-b border-gray-interface rounded-t-none md:rounded-t-2xl">
               <div className="flex items-center gap-2">
-                <Watch className="w-5 h-5 text-orange-400" />
-                <h2 className="text-white text-lg font-bold">Funções do Smartwatch</h2>
+                <Watch className="w-5 h-5 text-orange-500" />
+                <h2 className="text-graphite text-lg font-bold">Funções do Smartwatch</h2>
               </div>
               <button
                 onClick={closeFunctionsPopup}
-                className="text-gray-400 hover:text-white transition-colors p-1"
+                className="text-gray-text hover:text-graphite transition-colors p-1"
                 aria-label="Fechar lista de funções"
               >
                 <X className="w-6 h-6" />
@@ -967,7 +952,7 @@ export default function LandingPage() {
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-5 md:p-6">
-              <p className="text-gray-400 text-sm mb-5">
+              <p className="text-gray-text text-sm mb-5">
                 Veja tudo que o seu smartwatch é capaz de fazer:
               </p>
               <ul className="space-y-2.5">
@@ -1021,19 +1006,19 @@ export default function LandingPage() {
                 ].map((funcao, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3 bg-gray-800/50 border border-gray-700/30 rounded-xl px-4 py-3"
+                    className="flex items-start gap-3 bg-offwhite border border-gray-interface rounded-xl px-4 py-3"
                   >
-                    <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-orange-500/20 border border-orange-500/50 flex items-center justify-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-400 block" />
+                    <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-peach border border-orange-500/50 flex items-center justify-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 block" />
                     </span>
-                    <span className="text-gray-200 text-sm leading-relaxed">{funcao}</span>
+                    <span className="text-graphite text-sm leading-relaxed">{funcao}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Footer */}
-            <div className="sticky bottom-0 bg-gray-900/95 border-t border-gray-700/50 p-4">
+            <div className="sticky bottom-0 bg-white border-t border-gray-interface p-4">
               <button
                 onClick={closeFunctionsPopup}
                 className="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors"
@@ -1056,11 +1041,11 @@ export default function LandingPage() {
         {/* Modelos Disponiveis */}
         <div className="w-full max-w-md md:max-w-5xl mb-6 md:mb-10">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight whitespace-nowrap mb-2 md:mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-graphite uppercase tracking-tight whitespace-nowrap mb-2 md:mb-3">
               CONHEÇA NOSSOS{" "}
-              <span className="text-orange-400">MODELOS</span>
+              <span className="text-orange-500">MODELOS</span>
             </h2>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
+            <p className="text-gray-text text-base md:text-lg max-w-2xl mx-auto">
               Encontre o smartwatch perfeito para o seu estilo e pulso
             </p>
           </div>
@@ -1083,10 +1068,10 @@ export default function LandingPage() {
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">49mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">MAIOR TELA</span>
+                  <span className="text-orange-500 text-xs font-semibold">MAIOR TELA</span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Series 11 Ultra</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <h3 className="text-lg md:text-xl font-bold text-graphite mb-1">Series 11 Ultra</h3>
+                <p className="text-gray-text text-sm leading-relaxed">
                   Design robusto, ideal para pulsos mais largos. A maior tela da linha para quem quer visibilidade máxima.
                 </p>
   <button
@@ -1118,10 +1103,10 @@ export default function LandingPage() {
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">47mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">BORDA INFINITA</span>
+                  <span className="text-orange-500 text-xs font-semibold">BORDA INFINITA</span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Series 11 Pro</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <h3 className="text-lg md:text-xl font-bold text-graphite mb-1">Series 11 Pro</h3>
+                <p className="text-gray-text text-sm leading-relaxed">
                   Tela borda infinita com design clássico. Ideal para pulsos medianos e largos.
                 </p>
                 <button
@@ -1153,10 +1138,10 @@ export default function LandingPage() {
               <div className="p-4 md:p-5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">42mm</span>
-                  <span className="text-orange-400 text-xs font-semibold">MINIMALISTA</span>
+                  <span className="text-orange-500 text-xs font-semibold">MINIMALISTA</span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">S11 Pro Mini</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <h3 className="text-lg md:text-xl font-bold text-graphite mb-1">S11 Pro Mini</h3>
+                <p className="text-gray-text text-sm leading-relaxed">
                   Tela borda infinita com design minimalista. Ideal para pulsos femininos médio e fino.
                 </p>
                 <button
@@ -1186,9 +1171,9 @@ export default function LandingPage() {
           {/* Seção Confira os Valores */}
           <div id="valores" className="mt-10 md:mt-14 scroll-mt-24">
             <div className="text-center mb-6 md:mb-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight text-balance">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-graphite uppercase tracking-tight text-balance">
                 CONFIRA OS{" "}
-                <span className="text-orange-400">VALORES</span>
+                <span className="text-orange-500">VALORES</span>
               </h2>
             </div>
 
@@ -1205,11 +1190,11 @@ export default function LandingPage() {
                 </div>
                 <div className="p-5 flex flex-col gap-3">
                   <div>
-                    <h3 className="text-white font-bold text-lg leading-tight">
+                    <h3 className="text-graphite font-bold text-lg leading-tight">
                       Series 11 Ultra{" "}
-                      <span className="text-gray-400 font-normal text-sm">(49mm)</span>
+                      <span className="text-gray-text font-normal text-sm">(49mm)</span>
                     </h3>
-                    <p className="text-gray-500 text-sm line-through mt-0.5">R$422,50</p>
+                    <p className="text-gray-text text-sm line-through mt-0.5">R$422,50</p>
                     <div className="flex items-baseline gap-2 mt-0.5">
                       <span className="text-white text-3xl font-black">R$325,00</span>
                       <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">30% OFF</span>
@@ -1244,11 +1229,11 @@ export default function LandingPage() {
                 </div>
                 <div className="p-5 flex flex-col gap-3">
                   <div>
-                    <h3 className="text-white font-bold text-lg leading-tight">
+                    <h3 className="text-graphite font-bold text-lg leading-tight">
                       Series 11 Pro{" "}
-                      <span className="text-gray-400 font-normal text-sm">(47mm)</span>
+                      <span className="text-gray-text font-normal text-sm">(47mm)</span>
                     </h3>
-                    <p className="text-gray-500 text-sm line-through mt-0.5">R$422,50</p>
+                    <p className="text-gray-text text-sm line-through mt-0.5">R$422,50</p>
                     <div className="flex items-baseline gap-2 mt-0.5">
                       <span className="text-white text-3xl font-black">R$325,00</span>
                       <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">30% OFF</span>
@@ -1283,11 +1268,11 @@ export default function LandingPage() {
                 </div>
                 <div className="p-5 flex flex-col gap-3">
                   <div>
-                    <h3 className="text-white font-bold text-lg leading-tight">
+                    <h3 className="text-graphite font-bold text-lg leading-tight">
                       S11 Pro Mini{" "}
-                      <span className="text-gray-400 font-normal text-sm">(42mm)</span>
+                      <span className="text-gray-text font-normal text-sm">(42mm)</span>
                     </h3>
-                    <p className="text-gray-500 text-sm line-through mt-0.5">R$422,50</p>
+                    <p className="text-gray-text text-sm line-through mt-0.5">R$422,50</p>
                     <div className="flex items-baseline gap-2 mt-0.5">
                       <span className="text-white text-3xl font-black">R$325,00</span>
                       <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-md">30% OFF</span>
